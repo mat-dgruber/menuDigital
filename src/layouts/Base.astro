@@ -1,0 +1,79 @@
+---
+import '../styles/global.css';
+import settings from '../data/settings.json';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${settings.negocio.nome} — ${settings.negocio.slogan}`,
+  description = settings.negocio.descricao,
+} = Astro.props;
+
+const { tema, negocio, atendimento } = settings;
+---
+
+<!doctype html>
+<html lang="pt-BR" data-theme={tema.modo}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    
+    <!-- Open Graph / Redes Sociais & WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={negocio.hero_img} />
+    <meta name="theme-color" content={tema.cor_fundo} />
+
+    <!-- Google Fonts com Preconnect Otimizado (LCP/Performance) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Injeção dos Design Tokens Nativos via CSS Custom Properties -->
+    <style set:html={`
+      :root {
+        --color-primary: ${tema.cor_primaria};
+        --color-secondary: ${tema.cor_secundaria};
+        --color-bg: ${tema.cor_fundo};
+        --color-surface: ${tema.cor_superficie};
+        --color-surface-card: ${tema.cor_superficie_card};
+        --color-text: ${tema.cor_texto};
+        --color-text-muted: ${tema.cor_texto_muted};
+        --color-whatsapp: ${tema.cor_whatsapp};
+      }
+    `}></style>
+
+    <!-- Schema.org JSON-LD (SEO Local de Restaurante) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": negocio.nome,
+      "description": negocio.descricao,
+      "image": negocio.hero_img,
+      "telephone": atendimento.whatsapp,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": atendimento.endereco
+      },
+      "openingHours": atendimento.horario,
+      "servesCuisine": "Esfihas Artesanais",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": negocio.nota,
+        "bestRating": "5",
+        "ratingCount": "320"
+      }
+    })} />
+  </head>
+  <body>
+    <div class="app-container">
+      <slot />
+    </div>
+  </body>
+</html>

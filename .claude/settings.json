@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm:*)",
+      "Bash(make:*)",
+      "Bash(npx:*)",
+      "Read",
+      "Glob",
+      "Grep",
+      "Edit"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Read|Write|Edit|Grep",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // .tool_input.path // .tool_input.command // \"\"' | { read -r p; echo \"$p\" | grep -qiE '(\\.env|secret|token|password|credential|\\.pem|\\.key|id_rsa)' && echo '{\"decision\":\"block\",\"reason\":\"Possível acesso a arquivo sensível. Verifique se é intencional.\"}' || echo '{}'; } 2>/dev/null || echo '{}'"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // .tool_response.filePath // \"\"' | { read -r f; echo \"$f\" | grep -qE '\\.(astro|ts|js|css|json)$' && echo '{\"hookSpecificOutput\":{\"additionalContext\":\"Arquivo modificado: \" .. \"$f\"}}' || echo '{}'; } 2>/dev/null || echo '{}'"
+          }
+        ]
+      }
+    ]
+  },
+  "env": {
+    "ASTRO_TELEMETRY": "disabled"
+  }
+}

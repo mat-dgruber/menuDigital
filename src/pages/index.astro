@@ -1,0 +1,74 @@
+---
+import { getCollection } from 'astro:content';
+import settings from '../data/settings.json';
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import CategoryChips from '../components/CategoryChips.astro';
+import PromoCombo from '../components/PromoCombo.astro';
+import MenuSection from '../components/MenuSection.astro';
+import StickyWhatsAppBar from '../components/StickyWhatsAppBar.astro';
+import Footer from '../components/Footer.astro';
+
+// Obter todos os itens do cardápio ordenados
+const allItems = await getCollection('menu');
+
+// Agrupamento dos itens por categoria
+const { categorias } = settings;
+
+const grupos = categorias.map((cat) => {
+  let itensDaCategoria = [];
+
+  if (cat.id === 'mais-pedidos') {
+    itensDaCategoria = allItems.filter(
+      (item) => item.data.maisPedido || item.data.destaque
+    );
+  } else {
+    itensDaCategoria = allItems.filter(
+      (item) => item.data.categoria.toLowerCase() === cat.id.toLowerCase()
+    );
+  }
+
+  // Ordenação por ordem cadastrada
+  itensDaCategoria.sort((a, b) => (a.data.ordem ?? 0) - (b.data.ordem ?? 0));
+
+  return {
+    ...cat,
+    itens: itensDaCategoria,
+  };
+}).filter((grupo) => grupo.itens.length > 0);
+---
+
+<Base>
+  <Nav />
+  
+  <main id="conteudo-cardapio" class="animate-fade-in">
+    <Hero />
+    
+    <CategoryChips />
+    
+    <PromoCombo />
+
+    <div class="menu-sections-wrapper">
+      {grupos.map((grupo) => (
+        <MenuSection 
+          categoriaId={grupo.id}
+          categoriaNome={grupo.nome}
+          categoriaIcone={grupo.icone}
+          itens={grupo.itens}
+        />
+      ))}
+    </div>
+
+    <Footer />
+  </main>
+
+  <StickyWhatsAppBar />
+</Base>
+
+<style>
+  .menu-sections-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+</style>

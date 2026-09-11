@@ -1,0 +1,157 @@
+---
+import settings from '../data/settings.json';
+
+const { negocio } = settings;
+---
+
+<section class="hero-section" aria-label="Apresentação do estabelecimento">
+  <div class="hero-media">
+    <img 
+      src={negocio.hero_img} 
+      alt={`Imagem de destaque de ${negocio.nome}`}
+      class="hero-img"
+      fetchpriority="high"
+      loading="eager"
+    />
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badges">
+      <span class="badge badge-gold">
+        <span>✨</span> {negocio.selo_hero}
+      </span>
+      <span class="badge badge-primary">
+        <span>🔥</span> {negocio.ramo}
+      </span>
+    </div>
+
+    <h2 class="hero-headline">{negocio.slogan}</h2>
+    <p class="hero-desc">{negocio.descricao}</p>
+
+    <div class="hero-social-proof">
+      <div class="rating-box">
+        <span class="star-icon">⭐</span>
+        <strong class="rating-num">{negocio.nota}</strong>
+        <span class="rating-label">(Avaliação Máxima)</span>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="orders-box">
+        <span class="orders-icon">🛵</span>
+        <span class="orders-text">{negocio.total_pedidos_mes}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin: 1rem 0 1.25rem 0;
+    background-color: var(--color-surface);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: var(--shadow-md);
+  }
+
+  .hero-media {
+    position: relative;
+    width: 100%;
+    height: 190px;
+    overflow: hidden;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.02);
+    transition: transform 0.5s ease;
+  }
+
+  .hero-section:hover .hero-img {
+    transform: scale(1.05);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(25, 18, 14, 0.2) 0%, rgba(25, 18, 14, 0.95) 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    padding: 1.15rem 1.15rem 1.25rem 1.15rem;
+    margin-top: -3.5rem;
+  }
+
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .hero-headline {
+    font-size: 1.35rem;
+    font-weight: 800;
+    line-height: 1.25;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.45rem;
+  }
+
+  .hero-desc {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    margin-bottom: 0.95rem;
+  }
+
+  .hero-social-proof {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0.85rem;
+    background-color: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 0.78rem;
+  }
+
+  .rating-box {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .star-icon {
+    font-size: 0.9rem;
+  }
+
+  .rating-num {
+    color: var(--color-secondary);
+    font-weight: 800;
+  }
+
+  .rating-label {
+    color: var(--color-text-muted);
+  }
+
+  .proof-divider {
+    width: 1px;
+    height: 14px;
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .orders-box {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--color-text);
+    font-weight: 600;
+  }
+</style>

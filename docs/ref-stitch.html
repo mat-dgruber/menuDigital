@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+
+<html class="dark scroll-smooth" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kaleb's Esfiharia - Cardápio Digital Artesanal</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,500;0,600;0,700;0,800;1,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-container": "#00a74c",
+            "outline": "#a98a7e",
+            "on-tertiary-container": "#003111",
+            "outline-variant": "#5a4138",
+            "surface-variant": "#3c332e",
+            "secondary-container": "#ee9800",
+            "on-tertiary-fixed-variant": "#005322",
+            "on-error-container": "#ffdad6",
+            "surface-container-low": "#211a16",
+            "error-container": "#93000a",
+            "surface-container-high": "#302824",
+            "on-tertiary": "#003915",
+            "inverse-on-surface": "#372f2a",
+            "surface-container-lowest": "#130d09",
+            "on-tertiary-fixed": "#002109",
+            "on-secondary": "#472a00",
+            "error": "#ffb4ab",
+            "on-secondary-container": "#5b3800",
+            "surface-dim": "#19120e",
+            "secondary": "#ffb95f",
+            "inverse-primary": "#a73a00",
+            "inverse-surface": "#eee0d8",
+            "secondary-fixed-dim": "#ffb95f",
+            "on-primary-container": "#4f1700",
+            "primary": "#ffb599",
+            "surface-container": "#261e1a",
+            "background": "#19120e",
+            "on-primary-fixed-variant": "#7f2b00",
+            "surface-container-highest": "#3c332e",
+            "on-primary": "#5a1c00",
+            "surface": "#19120e",
+            "on-surface-variant": "#e2bfb2",
+            "tertiary-fixed-dim": "#3de273",
+            "primary-fixed-dim": "#ffb599",
+            "tertiary-fixed": "#66ff8e",
+            "on-background": "#eee0d8",
+            "surface-bright": "#403733",
+            "surface-tint": "#ffb599",
+            "on-error": "#690005",
+            "on-surface": "#eee0d8",
+            "primary-fixed": "#ffdbce",
+            "primary-container": "#f66018",
+            "on-secondary-fixed": "#2a1700",
+            "on-secondary-fixed-variant": "#653e00",
+            "tertiary": "#3de273",
+            "secondary-fixed": "#ffddb8",
+            "on-primary-fixed": "#370e00"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-mobile": "0.75rem",
+            "gutter": "1rem",
+            "space-xl": "2.5rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "margin-mobile": "1rem",
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "margin": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Epilogue"],
+            "display-lg": ["Epilogue"],
+            "headline-lg-mobile": ["Epilogue"],
+            "body-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "display-lg-mobile": ["Epilogue"],
+            "headline-sm": ["Epilogue"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-md": ["Epilogue"],
+            "price-display": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-lg": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "700"}],
+            "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+            "headline-lg-mobile": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+            "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+            "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+            "label-sm": ["10px", {"lineHeight": "12px", "letterSpacing": "0.04em", "fontWeight": "700"}],
+            "display-lg-mobile": ["30px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+            "headline-sm": ["17px", {"lineHeight": "22px", "fontWeight": "600"}],
+            "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "label-lg": ["14px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+            "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+            "headline-md": ["20px", {"lineHeight": "26px", "fontWeight": "600"}],
+            "price-display": ["18px", {"lineHeight": "22px", "letterSpacing": "-0.01em", "fontWeight": "800"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 20px;
+      line-height: 1;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    @keyframes emberShimmer {
+      0% {
+        transform: translateX(-150%) skewX(-20deg);
+      }
+      50%, 100% {
+        transform: translateX(250%) skewX(-20deg);
+      }
+    }
+    .animate-shimmer {
+      animation: emberShimmer 5s ease-in-out infinite;
+    }
+
+    @keyframes softBadgeBounce {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.15);
+      }
+    }
+    .animate-badge-bounce {
+      animation: softBadgeBounce 2.5s ease-in-out infinite;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen pb-36 selection:bg-primary-container selection:text-white">
+<!-- TopAppBar Component (from Shared Components JSON) -->
+<header class="bg-surface/95 dark:bg-surface/95 border-b border-outline-variant/20 shadow-sm docked full-width top-0 sticky z-40 backdrop-blur-md">
+<div class="flex justify-between items-center w-full px-4 py-3 max-w-lg mx-auto">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-primary-container transition-transform duration-300 hover:rotate-12" data-icon="local_fire_department">local_fire_department</span>
+<div>
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary tracking-tight block leading-none">Kaleb's Esfiharia</span>
+<span class="font-label-sm text-label-sm text-secondary tracking-wider block mt-0.5">ARTESANAL FORNO A LENHA</span>
+</div>
+</div>
+<div class="flex items-center space-x-2">
+<a class="flex items-center gap-1 bg-surface-container-high hover:bg-surface-bright text-on-surface-variant px-2.5 py-1 rounded-full text-xs font-semibold border border-outline-variant/30 active:scale-95 transition-all duration-150 shadow-sm hover:border-outline-variant/50" href="https://instagram.com/kalebs_esfiharia" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="photo_camera">photo_camera</span>
+<span>@kalebs_esfiharia</span>
+</a>
+</div>
+</div>
+</header>
+<!-- Live Store Status Banner -->
+<div class="bg-surface-container-low px-4 py-2 border-b border-outline-variant/10 text-center">
+<div class="max-w-lg mx-auto flex items-center justify-between text-xs">
+<span class="flex items-center gap-1.5 text-tertiary font-bold tracking-wide">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-tertiary"></span>
+</span>
+        ABERTO AGORA · 18h às 23h30
+      </span>
+<span class="text-on-surface-variant flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-xs text-secondary" data-icon="moped">moped</span>
+        Entrega 30-45 min
+      </span>
+</div>
+</div>
+<main class="max-w-lg mx-auto px-4 pt-4 space-y-6">
+<!-- Hero Section -->
+<section class="relative rounded-2xl overflow-hidden bg-surface-container-low border border-outline-variant/20 shadow-lg group">
+<div class="relative h-56 w-full overflow-hidden">
+<img class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Close up gourmet shot of freshly baked authentic Levantine open face sfiha flatbreads with golden blistered bubbly crust and juicy seasoned minced beef filling garnished with fresh mint and fresh lemon wedges, placed over rustic dark clay oven stone with glowing ember highlights in a warm ambient dark culinary atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChgOiKDCWvszb-vf6BReQbNyNnyHl_Y3dfavGd_gcu8woWf9ChFmKGraUq1X6M6VZCrNm1_WObt84T9VYNBK__sMyKAZxGeszwenpmZxnyByMjF_YnGSv8yEyax5xcin-C7zTB3y3_lDfQf1n7eWYk5dz4qz537XEPkDa5M5nJreVK2Ug2jVS5dcuRByoiCkf-ZPV8YebWHoMJcGPWqcOCOfJPCzC6HQxaxFUUIKhti4LgA5JMsRM0-mhQi4RzT__zDG2hB7PpJAKJ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/70 to-transparent"></div>
+<div class="absolute top-3 left-3 bg-surface-container-lowest/90 backdrop-blur-md px-2.5 py-1 rounded-full border border-secondary/30 flex items-center gap-1.5 shadow-md">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md text-secondary font-bold">4.9</span>
+<span class="text-on-surface-variant text-[11px]">+500 pedidos este mês</span>
+</div>
+</div>
+<div class="p-4 space-y-3 relative -mt-6 bg-surface-container-lowest/95 backdrop-blur-md rounded-t-2xl border-t border-outline-variant/20">
+<div class="flex items-center gap-2">
+<span class="bg-primary-container/20 text-primary-container px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider border border-primary-container/30">Receita Ancestral</span>
+<span class="text-xs text-secondary font-medium flex items-center gap-0.5">
+<span class="material-symbols-outlined text-xs" data-icon="local_fire_department">local_fire_department</span>
+            Fornada Contínua
+          </span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface font-extrabold tracking-tight">
+          A autêntica esfiha árabe assada na hora
+        </h1>
+<p class="text-on-surface-variant font-body-sm text-body-sm leading-relaxed">
+          Massa fresca de fermentação lenta com toque leve e aerado, recheios fartos preparados artesanalmente e o genuíno aroma da brasa.
+        </p>
+<div class="pt-2 flex items-center gap-3">
+<a class="flex-1 bg-gradient-to-r from-primary-container to-secondary-container hover:opacity-95 hover:brightness-105 text-white font-label-lg text-label-lg py-3 rounded-xl flex items-center justify-center gap-2 shadow-[0_4px_20px_rgba(246,96,24,0.35)] active:scale-95 transition-transform duration-150" href="#cardapio">
+<span class="material-symbols-outlined text-lg" data-icon="restaurant_menu">restaurant_menu</span>
+            Ver Cardápio
+          </a>
+<a class="bg-tertiary-container hover:opacity-95 hover:brightness-105 text-white px-4 py-3 rounded-xl flex items-center justify-center gap-1.5 font-label-lg text-label-lg shadow-[0_4px_16px_rgba(0,167,76,0.3)] active:scale-95 transition-transform duration-150" href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido%20na%20Kaleb's%20Esfiharia!" target="_blank">
+<span class="material-symbols-outlined text-lg" data-icon="chat">chat</span>
+<span>WhatsApp</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Interactive Category Filter Chips -->
+<section class="space-y-2" id="cardapio">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary-container text-lg" data-icon="local_fire_department">local_fire_department</span>
+          Categorias
+        </h2>
+<span class="text-xs text-on-surface-variant">Deslize para ver mais</span>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 -mx-4 px-4 scroll-smooth">
+<button class="shrink-0 bg-primary-container text-white px-3.5 py-2 rounded-xl text-xs font-bold shadow-[0_2px_10px_rgba(246,96,24,0.35)] flex items-center gap-1.5 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-sm" data-icon="local_fire_department">local_fire_department</span>
+          Mais Pedidos
+        </button>
+<button class="shrink-0 bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface border border-outline-variant/30 px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-sm" data-icon="restaurant">restaurant</span>
+          Salgadas Clássicas
+        </button>
+<button class="shrink-0 bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface border border-outline-variant/30 px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-sm" data-icon="dinner_dining">dinner_dining</span>
+          Especiais &amp; Queijos
+        </button>
+<button class="shrink-0 bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface border border-outline-variant/30 px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-sm" data-icon="cake">cake</span>
+          Esfihas Doces
+        </button>
+<button class="shrink-0 bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface border border-outline-variant/30 px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-sm" data-icon="bakery_dining">bakery_dining</span>
+          Kibes &amp; Salgados
+        </button>
+<button class="shrink-0 bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface border border-outline-variant/30 px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-sm" data-icon="local_bar">local_bar</span>
+          Bebidas
+        </button>
+<button class="shrink-0 bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface border border-outline-variant/30 px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-sm" data-icon="local_offer">local_offer</span>
+          Combos
+        </button>
+</div>
+</section>
+<!-- Combo Promocional Banner (Bento Highlight with Ember Shimmer) -->
+<section class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-surface-container-high via-surface-container to-surface-container-lowest border border-secondary-container/40 p-4 shadow-[0_8px_32px_-4px_rgba(238,152,0,0.25)] hover:border-secondary-container/70 transition-all duration-300">
+<!-- Ember Shimmer Overlay -->
+<div class="pointer-events-none absolute inset-0 -top-[100%] -bottom-[100%] w-1/3 bg-gradient-to-r from-transparent via-secondary/15 to-transparent animate-shimmer"></div>
+<div class="absolute -right-8 -top-8 w-32 h-32 bg-secondary-container/10 rounded-full blur-2xl pointer-events-none"></div>
+<div class="relative z-10 flex items-center justify-between mb-2">
+<span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase px-2.5 py-1 rounded-md font-extrabold tracking-wider shadow-sm flex items-center gap-1">
+<span>🔥</span> OFERTA DA SEMANA
+        </span>
+<span class="text-tertiary text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="savings">savings</span>
+          Economize R$ 16,10
+        </span>
+</div>
+<div class="relative z-10 flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
+<div class="space-y-1">
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface">Combo Kaleb's Família</h3>
+<p class="text-on-surface-variant font-body-sm text-body-sm max-w-xs">
+            10 Esfihas Salgadas à escolha + 2 Esfihas Doces Especiais + 1 Refrigerante 2L gelado.
+          </p>
+<div class="flex items-baseline gap-2 pt-1">
+<span class="text-xs text-outline line-through">De: R$ 86,00</span>
+<span class="font-price-display text-price-display text-secondary font-black">Por: R$ 69,90</span>
+</div>
+</div>
+<button class="w-full sm:w-auto shrink-0 bg-secondary-container hover:bg-secondary text-on-secondary-container font-label-lg text-label-lg px-4 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 shadow-md active:scale-95 transition-transform duration-150" onclick="addToCart('Combo Kaleb\'s Família', 69.90)">
+<span class="material-symbols-outlined text-base" data-icon="add_shopping_cart">add_shopping_cart</span>
+          Pedir Combo
+        </button>
+</div>
+</section>
+<!-- Products Showcase (Gastronomic Cards with Tactile Elevation & Feedback) -->
+<section class="space-y-3">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">
+          Mais Pedidos da Esfiharia
+        </h2>
+<span class="text-xs text-secondary font-semibold">8 itens artesanais</span>
+</div>
+<!-- Item 1: Esfiha de Carne Bovina Especial -->
+<article class="bg-surface-container rounded-xl p-3 border border-outline-variant/20 shadow-sm hover:-translate-y-1 hover:border-primary/40 hover:shadow-md transition-all duration-200 flex gap-3 items-center group">
+<div class="w-24 h-24 shrink-0 rounded-xl overflow-hidden relative bg-surface-container-high">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Macro delicious photography of authentic Lebanese open beef sfiha with charred wood-fired edges, seasoned minced prime beef, finely chopped sweet onions, diced tomatoes and sliced fresh lemon in a dark rustic mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeN4De8e1G8Jk3WMdP85HnIszV6P-nbLdApebB3XZmc8K_VD_vBl8yJ7JtCvl5pRyphISFcn3onCz2WWZN1_mzEJKie_0uSXhpQAf_bhZm-2nV91t3mSWyMN088aHaBP_8xbj1pxJi0glI_GZD4dLQIdDJlKjsmvcNvtgUB68qTqqzEhPZgpJx2_T3d_ANRKsaD5iOlRVfsX6_eZwJNpLw_fILY8GFwUboSi8XNQnogmV6lSZ6tW4Q7dGGDPQGgwXtDNWe_HM49zKK"/>
+<span class="absolute bottom-1 left-1 bg-surface-container-lowest/90 text-secondary text-[9px] font-bold px-1.5 py-0.5 rounded border border-secondary/30 flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[10px]" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+            Destaque
+          </span>
+</div>
+<div class="flex-1 min-w-0 space-y-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate font-semibold">Esfiha Carne Especial</h3>
+<p class="text-on-surface-variant font-body-sm text-body-sm line-clamp-2 leading-snug">
+            Carne de primeira moída, cebola fininha, tomate maduro, limão siciliano e especiarias sírias secretas.
+          </p>
+<div class="flex items-center justify-between pt-1">
+<span class="font-price-display text-price-display text-primary font-bold">R$ 6,50</span>
+<button class="bg-surface-container-high hover:bg-primary/20 hover:text-primary-fixed text-primary border border-outline-variant/30 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1 active:scale-95 transition-transform duration-150" onclick="addToCart('Esfiha Carne Especial', 6.50)">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+              Adicionar
+            </button>
+</div>
+</div>
+</article>
+<!-- Item 2: Esfiha de Queijo & Gergelim Dourado -->
+<article class="bg-surface-container rounded-xl p-3 border border-outline-variant/20 shadow-sm hover:-translate-y-1 hover:border-primary/40 hover:shadow-md transition-all duration-200 flex gap-3 items-center group">
+<div class="w-24 h-24 shrink-0 rounded-xl overflow-hidden relative bg-surface-container-high">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Mouthwatering open cheese sfiha with bubbling melted mozzarella and toasted golden sesame seeds baked to perfection in an artisanal clay oven on deep charcoal slate." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1dTZ6EJQqiUY7YEwHQIVGuHgHmFafGOa5-v565ySXqzzJhJb9w2D-RykWpcXBVgpgd_R0-hgysZu-HcWaMFnK5cUQUFKVDBzuXhZLXyFHcoQPxrPbIMPW0iudF-T7wyi_LfTDn6lKb6ddYh_9PiT7Gql5PghFIFw0HZ3es9pe9y7GOcgWfQzoDZPmBAT3c-U34xBPJv8yfK27GesZIKXNjhziaMaC6tbIAC8T2vnXyd4bNw6rBkL9LRfpU40iCRZ8ISeVdcGG7EcQ"/>
+</div>
+<div class="flex-1 min-w-0 space-y-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate font-semibold">Esfiha Queijo &amp; Gergelim</h3>
+<p class="text-on-surface-variant font-body-sm text-body-sm line-clamp-2 leading-snug">
+            Mussarela nobre gratinada no ponto perfeito com sementes de gergelim tostadas e orégano fresco.
+          </p>
+<div class="flex items-center justify-between pt-1">
+<span class="font-price-display text-price-display text-primary font-bold">R$ 7,00</span>
+<button class="bg-surface-container-high hover:bg-primary/20 hover:text-primary-fixed text-primary border border-outline-variant/30 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1 active:scale-95 transition-transform duration-150" onclick="addToCart('Esfiha Queijo &amp; Gergelim', 7.00)">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+              Adicionar
+            </button>
+</div>
+</div>
+</article>
+<!-- Item 3: Esfiha de Frango com Catupiry Original -->
+<article class="bg-surface-container rounded-xl p-3 border border-outline-variant/20 shadow-sm hover:-translate-y-1 hover:border-primary/40 hover:shadow-md transition-all duration-200 flex gap-3 items-center group">
+<div class="w-24 h-24 shrink-0 rounded-xl overflow-hidden relative bg-surface-container-high">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Delicious open chicken sfiha topped with creamy melted original Catupiry cheese swirl lightly blowtorched and browned, garnished with aromatic herbs in warm nocturnal ember tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQRUupzzWqZLFZIIJf28RhE_O9QsO3O5rucHD4h9nN2SquktxoHIbTyLVVOMjMIH7lFBNANZ-_s-usBIysuo25SJCNFDu0noaDik0P75vS7uLTd5yYFc0tfDqN33_31NHED3zkzJbrVqjY6ah0hmXrEYJNrL0pn9_784hBjSLGEFuJ19C1fp5uRto__bsjwISG7_9H9GuotPBrdf1R7GJDzfGS64MGR6XYb2xcFsCbPwFVcLxwen5DSUZUawrWnbpZ5IMj8B_bg1PG"/>
+</div>
+<div class="flex-1 min-w-0 space-y-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate font-semibold">Frango com Catupiry Original</h3>
+<p class="text-on-surface-variant font-body-sm text-body-sm line-clamp-2 leading-snug">
+            Peito de frango desfiado com tempero aromático da casa e Catupiry legítimo suavemente maçaricado.
+          </p>
+<div class="flex items-center justify-between pt-1">
+<span class="font-price-display text-price-display text-primary font-bold">R$ 7,50</span>
+<button class="bg-surface-container-high hover:bg-primary/20 hover:text-primary-fixed text-primary border border-outline-variant/30 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1 active:scale-95 transition-transform duration-150" onclick="addToCart('Frango c/ Catupiry', 7.50)">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+              Adicionar
+            </button>
+</div>
+</div>
+</article>
+<!-- Item 4: Esfiha de Carne Seca com Queijo Coalho -->
+<article class="bg-surface-container rounded-xl p-3 border border-outline-variant/20 shadow-sm hover:-translate-y-1 hover:border-primary/40 hover:shadow-md transition-all duration-200 flex gap-3 items-center group">
+<div class="w-24 h-24 shrink-0 rounded-xl overflow-hidden relative bg-surface-container-high">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Artisanal open flatbread sfiha stuffed with shredded sun-dried jerked beef and gratinated coalho cheese with charred grill marks in a moody warm wood oven lighting setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMh0d2MFDzH19PpAtmDJui2EpuhHaMDJ2irZc2lFBm3aOnqaNOhTfY492dq3b9iQ065jYJ4rarh3JoiolbIWZWD8LV95IP-V0lJTbVuFwQJD0SPKTbDnvGXzu2H-pUP4bWYlJSWrIRNDcBLsicRNGUFH9tJbgT5NkomXZpFhdclQQhHV1vJbngRbyQfL60mLWRpT5WKnCfM339cMavvy8mTnJyeNpHWDbXfTZ7bJQw7AUu4tT7Px7goSFCp7TqHvYe__vWcAE9CxfP"/>
+<span class="absolute bottom-1 left-1 bg-primary-container/90 text-white text-[9px] font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[10px]" data-icon="local_fire_department">local_fire_department</span>
+            Especial
+          </span>
+</div>
+<div class="flex-1 min-w-0 space-y-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate font-semibold">Carne Seca com Coalho</h3>
+<p class="text-on-surface-variant font-body-sm text-body-sm line-clamp-2 leading-snug">
+            Carne seca artesanal desfiada puxada na manteiga de garrafa com queijo coalho tostado na brasa.
+          </p>
+<div class="flex items-center justify-between pt-1">
+<span class="font-price-display text-price-display text-primary font-bold">R$ 9,50</span>
+<button class="bg-surface-container-high hover:bg-primary/20 hover:text-primary-fixed text-primary border border-outline-variant/30 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1 active:scale-95 transition-transform duration-150" onclick="addToCart('Carne Seca c/ Coalho', 9.50)">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+              Adicionar
+            </button>
+</div>
+</div>
+</article>
+<!-- Item 5: Kibe Frito Recheado com Catupiry -->
+<article class="bg-surface-container rounded-xl p-3 border border-outline-variant/20 shadow-sm hover:-translate-y-1 hover:border-primary/40 hover:shadow-md transition-all duration-200 flex gap-3 items-center group">
+<div class="w-24 h-24 shrink-0 rounded-xl overflow-hidden relative bg-surface-container-high">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Golden crisp deep fried Levantine beef kibbeh split open in half revealing luscious creamy Catupiry cheese filling with fresh mint leaves on dark slate platter." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCesDXLoZnnN7B2c-ZCe5uvpy0nS-5n87ERMEKeNK_Jrxiq4V-yzce8mPV5cXUmAxRFU7gqtTDDUj7460BGTRlpvIS4O8kO7tN7h-CKttY_oAmL0hvLLqNifqkRXJU7dv2xc7s0Q69sy04p5O5wcOBO2PizXsyClMX4QIUkMUxBI0p1GQsWIsLvgoNXBXCu-u1MvvcRyQGdIubRlOdOZMylGlijxphryUJhQhPdKdjZmfL3bs-BefcLQeCVQiOSL9igN0g5wr-WknOA"/>
+<span class="absolute bottom-1 left-1 bg-secondary-container text-on-secondary-container text-[9px] font-bold px-1.5 py-0.5 rounded">
+            Mais Vendido
+          </span>
+</div>
+<div class="flex-1 min-w-0 space-y-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate font-semibold">Kibe Frito c/ Catupiry</h3>
+<p class="text-on-surface-variant font-body-sm text-body-sm line-clamp-2 leading-snug">
+            Trigo selecionado e carne nobre temperada, casca crocante por fora e ultra cremoso por dentro.
+          </p>
+<div class="flex items-center justify-between pt-1">
+<span class="font-price-display text-price-display text-primary font-bold">R$ 8,50</span>
+<button class="bg-surface-container-high hover:bg-primary/20 hover:text-primary-fixed text-primary border border-outline-variant/30 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1 active:scale-95 transition-transform duration-150" onclick="addToCart('Kibe Frito c/ Catupiry', 8.50)">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+              Adicionar
+            </button>
+</div>
+</div>
+</article>
+<!-- Item 6: Esfiha de Cordeiro com Pignoli (Esgotado) -->
+<article class="bg-surface-container/60 rounded-xl p-3 border border-outline-variant/10 shadow-sm flex gap-3 items-center opacity-60">
+<div class="w-24 h-24 shrink-0 rounded-xl overflow-hidden relative bg-surface-container-high grayscale">
+<img class="w-full h-full object-cover" data-alt="Gourmet open lamb sfiha topped with toasted pine nuts pignoli and fresh chopped mint leaves photographed on dark artisanal ceramic with moody dramatic shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHeP9wz-fndt01BeS1us92-KOVr43tVv29nFo14tJmIss5iV_gKB9iuvnJAqpE9J7zUAtMe7Fb3erTvVDs4ll_hqcNaVrtMXhfpC9Plm5pampRBBtsZU1hoV3gho0dPZiriDjFyfnCIakIEm94YPw-zR6ympBGnDANWxITAfI1K_nxR7kL5UToFhTflfMzHreWgHNOjWgRhzTzlVb0X0MDDZIV9lotiOjDTMxGo790VNN-3vH6R1YL3Vo1eXYgxX0s-NggDEhrPDCg"/>
+<span class="absolute inset-0 bg-background/70 flex items-center justify-center text-error text-[10px] font-bold text-center px-1">
+            Esgotado Hoje
+          </span>
+</div>
+<div class="flex-1 min-w-0 space-y-1">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate font-semibold">Cordeiro com Pignoli</h3>
+<span class="text-[10px] text-error font-semibold bg-error-container/20 px-1.5 py-0.5 rounded">Indisponível</span>
+</div>
+<p class="text-on-surface-variant font-body-sm text-body-sm line-clamp-2 leading-snug">
+            Carne de cordeiro suave marinada no vinho com hortelã fresca e sementes nobres de pignoli tostadas.
+          </p>
+<div class="flex items-center justify-between pt-1">
+<span class="font-price-display text-price-display text-outline font-bold line-through">R$ 12,00</span>
+<button class="bg-surface-container text-outline px-3 py-1.5 rounded-lg text-xs font-semibold cursor-not-allowed" disabled="">
+              Esgotado
+            </button>
+</div>
+</div>
+</article>
+<!-- Item 7: Esfiha Doce de Chocolate Belga com Morango -->
+<article class="bg-surface-container rounded-xl p-3 border border-outline-variant/20 shadow-sm hover:-translate-y-1 hover:border-primary/40 hover:shadow-md transition-all duration-200 flex gap-3 items-center group">
+<div class="w-24 h-24 shrink-0 rounded-xl overflow-hidden relative bg-surface-container-high">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Decadent sweet open dessert sfiha filled with glossy dark Belgian chocolate ganache arranged with fresh sliced ripe red strawberries and powdered sugar drizzle." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVusHilUohYb_xuxGqMpYLw2PL8j1XErpJZwNPEFtAyVRYwbUl0zZetWX96uDj_DrEkEhr1km3VpOi9tMfywmJ95GslvwJXsilJWvsXsoD9nC_v48e_0U52-NG1SF9hJe0cHuRmtz3ya2WWSHM8hcDCdM5Z39CqfZcku_2AnktnezaZLZw-hgsTnd3ASkVOqHPPKTC6eBrom7pJL4JMR9G5Xr9vo8GhbiVAKZPqU4H0Wyh_wFIWvj4r4nKQt_GPtmd0zdfvpb53gep"/>
+<span class="absolute bottom-1 left-1 bg-surface-container-lowest/90 text-secondary text-[9px] font-bold px-1.5 py-0.5 rounded border border-secondary/30 flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[10px]" data-icon="favorite" data-weight="fill" style="font-variation-settings: 'FILL' 1;">favorite</span>
+            Favorito
+          </span>
+</div>
+<div class="flex-1 min-w-0 space-y-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate font-semibold">Chocolate Belga com Morango</h3>
+<p class="text-on-surface-variant font-body-sm text-body-sm line-clamp-2 leading-snug">
+            Creme de chocolate meio amargo com lâminas de morango fresco selecionado e finalização impecável.
+          </p>
+<div class="flex items-center justify-between pt-1">
+<span class="font-price-display text-price-display text-primary font-bold">R$ 9,00</span>
+<button class="bg-surface-container-high hover:bg-primary/20 hover:text-primary-fixed text-primary border border-outline-variant/30 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1 active:scale-95 transition-transform duration-150" onclick="addToCart('Choc. Belga c/ Morango', 9.00)">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+              Adicionar
+            </button>
+</div>
+</div>
+</article>
+<!-- Item 8: Esfiha de Nutella com Ninho Cremoso -->
+<article class="bg-surface-container rounded-xl p-3 border border-outline-variant/20 shadow-sm hover:-translate-y-1 hover:border-primary/40 hover:shadow-md transition-all duration-200 flex gap-3 items-center group">
+<div class="w-24 h-24 shrink-0 rounded-xl overflow-hidden relative bg-surface-container-high">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Artisanal dessert pizza sfiha generously spread with rich hazelnut Nutella spread abundantly dusted with Leite Ninho milk powder in warm bakery atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJg6dbvZ8E83SKB2uNNrAF5R2hF2j3iKblbwnTyJJcBusas0LCeS2taph41R6Q7c8MZAQx6AUUuzio4EawaQMgdCPC8Eijtg_L4LlmCkVONHKC2JQ_V6YRk9HxcsHKdgJe6kt5HNfKqYXKF0u-FyuE5ZPucvjusINsB5yA_8_edTIhTB3_JFDmb9ml6-UDI4f8_VtH4k3-pUCgcU5RY__qvMJzBYmk_i1scUWNWhky3cuyvNc_JrGwlj-MwtOtbhXcXkkuIIT_1Zez"/>
+</div>
+<div class="flex-1 min-w-0 space-y-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate font-semibold">Nutella com Leite Ninho</h3>
+<p class="text-on-surface-variant font-body-sm text-body-sm line-clamp-2 leading-snug">
+            Camada generosa de Nutella pura aveludada polvilhada com Leite Ninho cremoso e leve toque crocante.
+          </p>
+<div class="flex items-center justify-between pt-1">
+<span class="font-price-display text-price-display text-primary font-bold">R$ 10,00</span>
+<button class="bg-surface-container-high hover:bg-primary/20 hover:text-primary-fixed text-primary border border-outline-variant/30 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1 active:scale-95 transition-transform duration-150" onclick="addToCart('Nutella c/ Ninho', 10.00)">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+              Adicionar
+            </button>
+</div>
+</div>
+</article>
+</section>
+<!-- Info & Delivery Card -->
+<section class="bg-surface-container rounded-2xl p-4 border border-outline-variant/20 space-y-4">
+<div class="flex items-center gap-2 pb-2 border-b border-outline-variant/15">
+<span class="material-symbols-outlined text-secondary" data-icon="store">store</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Informações &amp; Entrega</h3>
+</div>
+<div class="grid grid-cols-1 gap-3">
+<div class="flex items-start gap-3">
+<div class="p-2 rounded-lg bg-surface-container-high text-primary shrink-0">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+</div>
+<div>
+<span class="text-xs text-on-surface-variant block font-medium">Endereço de Retirada &amp; Forno:</span>
+<p class="text-sm font-semibold text-on-surface">Rua das Esfihas, 450 - Centro</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="p-2 rounded-lg bg-surface-container-high text-secondary shrink-0">
+<span class="material-symbols-outlined" data-icon="schedule">schedule</span>
+</div>
+<div>
+<span class="text-xs text-on-surface-variant block font-medium">Horário de Atendimento:</span>
+<p class="text-sm font-semibold text-on-surface">Terça a Domingo: 18h às 23h30</p>
+<span class="text-[11px] text-outline font-medium">Segunda-feira: Fechado para descanso do forno</span>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="p-2 rounded-lg bg-surface-container-high text-tertiary shrink-0">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+</div>
+<div>
+<span class="text-xs text-on-surface-variant block font-medium">Pagamento Facilitado:</span>
+<p class="text-sm font-semibold text-on-surface">Pix (com 5% OFF), Débito, Crédito e VR / Sodexo</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="pt-4 pb-8 text-center space-y-3">
+<div class="flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-2xl" data-icon="local_fire_department">local_fire_department</span>
+<span class="font-headline-md text-headline-md font-bold text-primary">Kaleb's Esfiharia</span>
+</div>
+<p class="text-xs text-on-surface-variant max-w-xs mx-auto">
+        Cada esfiha é aberta individualmente e assada no calor da brasa na hora do seu pedido. Sabor e tradição árabe desde a primeira mordida.
+      </p>
+<div class="flex items-center justify-center gap-4 text-xs text-outline pt-2">
+<a class="hover:text-primary transition-colors" href="https://instagram.com/kalebs_esfiharia" target="_blank">@kalebs_esfiharia</a>
+<span>·</span>
+<span>Feito com paixão árabe</span>
+<span>·</span>
+<a class="hover:text-primary transition-colors" href="#">Privacidade</a>
+</div>
+</footer>
+</main>
+<!-- Sticky Floating Conversion Bar with Glow & Micro-animation -->
+<aside class="fixed bottom-14 left-0 right-0 z-40 px-3 py-2 max-w-lg mx-auto pointer-events-none">
+<div class="pointer-events-auto bg-surface-container/95 backdrop-blur-xl border border-secondary/30 rounded-2xl p-2.5 shadow-[0_10px_35px_rgba(0,0,0,0.8)] flex items-center justify-between gap-3">
+<div class="flex items-center gap-2 pl-2">
+<div class="relative">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</div>
+<span class="absolute -top-1.5 -right-1.5 bg-primary-container text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow animate-badge-bounce" id="cart-badge">
+            2
+          </span>
+</div>
+<div>
+<span class="text-[11px] text-on-surface-variant block font-medium leading-none">Total estimado:</span>
+<span class="font-price-display text-price-display text-secondary font-black leading-tight" id="cart-total">R$ 13,50</span>
+</div>
+</div>
+<a class="flex-1 bg-tertiary-container hover:bg-tertiary hover:brightness-105 text-white py-3 px-3 rounded-xl flex items-center justify-center gap-1.5 font-label-lg text-label-lg font-bold shadow-[0_4px_18px_rgba(0,167,76,0.4)] hover:shadow-[0_4px_24px_rgba(61,226,115,0.5)] active:scale-95 transition-all duration-150 text-center" href="https://wa.me/5511999999999?text=Ol%C3%A1%20Kaleb's!%20Gostaria%20de%20pedir%20as%20esfihas%20da%20minha%20sacola." id="whatsapp-checkout" target="_blank">
+<span class="material-symbols-outlined text-xl" data-icon="chat">chat</span>
+<span class="truncate">Pedir no WhatsApp</span>
+</a>
+</div>
+</aside>
+<!-- BottomNavBar Component (from Shared Components JSON) -->
+<nav class="border-t border-outline-variant/30 backdrop-blur-md bg-surface-container/95 dark:bg-surface-container/95 shadow-[0_-4px_16px_rgba(18,14,11,0.7)] docked full-width bottom-0 fixed z-50 left-0 w-full flex justify-around items-center px-4 py-2">
+<!-- Item 1: Cardápio (Active according to intent of browsing menu) -->
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary font-bold active:scale-95 transition-transform duration-150" href="#cardapio">
+<span class="material-symbols-outlined text-xl" data-icon="restaurant_menu">restaurant_menu</span>
+<span class="font-label-sm text-label-sm tracking-tight mt-0.5">Cardápio</span>
+</a>
+<!-- Item 2: Combos -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-secondary dark:hover:text-secondary transition-colors active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="local_offer">local_offer</span>
+<span class="font-label-sm text-label-sm tracking-tight mt-0.5">Combos</span>
+</a>
+<!-- Item 3: Entrega -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-secondary dark:hover:text-secondary transition-colors active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="moped">moped</span>
+<span class="font-label-sm text-label-sm tracking-tight mt-0.5">Entrega</span>
+</a>
+<!-- Item 4: Sacola -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-secondary dark:hover:text-secondary transition-colors active:scale-95 transition-transform duration-150 relative" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-label-sm text-label-sm tracking-tight mt-0.5">Sacola</span>
+</a>
+</nav>
+<!-- Interactive micro-interactions script -->
+<script>
+    let itemCount = 2;
+    let totalSum = 13.50;
+
+    function addToCart(productName, price) {
+      itemCount++;
+      totalSum += price;
+      
+      const badge = document.getElementById('cart-badge');
+      const total = document.getElementById('cart-total');
+      const checkoutBtn = document.getElementById('whatsapp-checkout');
+
+      if (badge) {
+        badge.innerText = itemCount;
+        badge.classList.remove('animate-badge-bounce');
+        void badge.offsetWidth;
+        badge.classList.add('animate-badge-bounce');
+      }
+      if (total) total.innerText = 'R$ ' + totalSum.toFixed(2).replace('.', ',');
+
+      if (checkoutBtn) {
+        const text = encodeURIComponent(`Olá Kaleb's! Gostaria de pedir: ${itemCount} itens no total de R$ ${totalSum.toFixed(2).replace('.', ',')}.`);
+        checkoutBtn.href = `https://wa.me/5511999999999?text=${text}`;
+      }
+
+      // Visual feedback toast
+      const toast = document.createElement('div');
+      toast.className = 'fixed top-16 left-1/2 -translate-x-1/2 z-50 bg-tertiary-container text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg border border-white/20 transition-all duration-300 pointer-events-none flex items-center gap-1.5';
+      toast.innerHTML = `<span class="material-symbols-outlined text-sm">check_circle</span> <span>+1 ${productName} adicionado!</span>`;
+      document.body.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translate(-50%, -10px)';
+        setTimeout(() => toast.remove(), 300);
+      }, 1600);
+    }
+  </script>
+</body></html>

@@ -1,0 +1,129 @@
+---
+import settings from '../data/settings.json';
+
+const { negocio, atendimento } = settings;
+---
+
+<header class="nav-header">
+  <div class="nav-brand">
+    <div class="logo-wrap">
+      <img src={negocio.logo} alt={`Logo ${negocio.nome}`} class="nav-logo" />
+    </div>
+    <div class="nav-info">
+      <h1 class="nav-title">{negocio.nome}</h1>
+      <div class="status-indicator">
+        <span class="status-dot"></span>
+        <span class="status-text">{atendimento.status_badge}</span>
+        <span class="status-separator">·</span>
+        <span class="delivery-time">{atendimento.tempo_entrega}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-actions">
+    <a 
+      href={negocio.instagram} 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="icon-btn" 
+      aria-label="Instagram do restaurante"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+        <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+      </svg>
+    </a>
+  </div>
+</header>
+
+<style>
+  .nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .logo-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background-color: var(--color-surface);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
+  }
+
+  .nav-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .nav-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    line-height: 1.2;
+  }
+
+  .status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.2rem;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #34d399;
+    box-shadow: 0 0 8px rgba(52, 211, 153, 0.8);
+    display: inline-block;
+  }
+
+  .status-text {
+    color: #34d399;
+    font-weight: 700;
+  }
+
+  .status-separator {
+    opacity: 0.4;
+  }
+
+  .icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-surface);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--color-text-muted);
+    transition: all var(--transition-fast);
+  }
+
+  .icon-btn:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    transform: scale(1.05);
+  }
+</style>

@@ -1,0 +1,51 @@
+{
+  "negocio": {
+    "nome": "Kaleb's Esfiharia",
+    "ramo": "Esfihas Artesanais",
+    "slogan": "Esfihas quentinhas feitas com carinho",
+    "descricao": "Massa fresca aberta com cuidado, recheios caprichados e muito sabor em cada detalhe.",
+    "selo_hero": "Feito com Carinho",
+    "nota": 4.9,
+    "total_pedidos_mes": "+500 pedidos este mês",
+    "logo": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=200&auto=format&fit=crop&q=80",
+    "hero_img": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&auto=format&fit=crop&q=80",
+    "instagram": "https://instagram.com/kalebs_esfiharia",
+    "instagram_user": "@kalebs_esfiharia"
+  },
+  "tema": {
+    "modo": "dark",
+    "cor_primaria": "#f66018",
+    "cor_secundaria": "#ee9800",
+    "cor_fundo": "#19120e",
+    "cor_superficie": "#261e1a",
+    "cor_superficie_card": "#211a16",
+    "cor_texto": "#eee0d8",
+    "cor_texto_muted": "#e2bfb2",
+    "cor_whatsapp": "#00a74c"
+  },
+  "atendimento": {
+    "horario": "Terça a Domingo: 18h às 23h30",
+    "status_badge": "ABERTO AGORA",
+    "tempo_entrega": "30-45 min",
+    "endereco": "Rua das Esfihas, 450 — Centro",
+    "whatsapp": "5511999999999",
+    "mensagem_padrao": "Olá! Gostaria de fazer um pedido no Kaleb's Esfiharia.",
+    "pagamentos": "Pix (com 5% OFF), Débito, Crédito e VR / Sodexo"
+  },
+  "combo_destaque": {
+    "ativo": true,
+    "badge": "OFERTA DA SEMANA",
+    "titulo": "Combo Kaleb's Família",
+    "descricao": "10 Esfihas Salgadas à escolha + 2 Esfihas Doces Especiais + 1 Refrigerante 2L bem gelado.",
+    "preco_de": 86.00,
+    "preco_por": 69.90,
+    "economia": "Economize R$ 16,10",
+    "foto": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&auto=format&fit=crop&q=80"
+  },
+  "categorias": [
+    { "id": "salgadas", "nome": "Esfirras Salgadas", "icone": "🥩" },
+    { "id": "especiais", "nome": "Esfirras Especiais", "icone": "⭐" },
+    { "id": "doces", "nome": "Esfirras Doces", "icone": "🍫" },
+    { "id": "bebidas", "nome": "Bebidas", "icone": "🥤" }
+  ]
+}

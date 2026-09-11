@@ -1,0 +1,215 @@
+{
+  "version": 1,
+  "skills": {
+    "answer-first": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/token-economy/answer-first/SKILL.md",
+      "computedHash": "fdda2405acc04e04cb614959e3fe9986ca0d729869e706b8e6ecca2d11e5287e"
+    },
+    "architecture-review": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/software-engineering/architecture-review/SKILL.md",
+      "computedHash": "84f56f29e781cbbfe71923e2275b06643c2706570d2b111620131b2a732f6abf"
+    },
+    "code-documentar": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/software-engineering/code-documentar/SKILL.md",
+      "computedHash": "88f93c419ae159301290eeb4494a94bc8d0fd1c82e2ffcb7744d76e97c7daf41"
+    },
+    "code-only": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/token-economy/code-only/SKILL.md",
+      "computedHash": "728afa810331717b53c4bccdfcb1250c42b10fa20de38c2eb7bc31cac3d54638"
+    },
+    "commit-e-documentar": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/software-engineering/commit-e-documentar/SKILL.md",
+      "computedHash": "455152335adc8c90b11bc41f3b9b70b8dc3fc28961e09e535eed871c748eb308"
+    },
+    "context-trim": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/token-economy/context-trim/SKILL.md",
+      "computedHash": "7441116e15de64ca05b42c3176b3ab9e40c47454aba055e2abba69552abcc724"
+    },
+    "db-documentar": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/data-engineering/db-documentar/SKILL.md",
+      "computedHash": "2f4eb374c61bd52fc44ba39d33998901ffde6320f132ef2e28ded8472d32deb8"
+    },
+    "design-review": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/design-ui-ux/design-review/SKILL.md",
+      "computedHash": "1fec525a2ae8e0fa7fa40b41ff3c0b67bcbc1601d1c5a6256ccf446388065161"
+    },
+    "forensic-adr-recovery": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/software-engineering/forensic-adr-recovery/SKILL.md",
+      "computedHash": "8758211172f557eb51728a04933edbf52c4dc8d5a001a5f7505dde80c2c435da"
+    },
+    "graphify": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/graphify/SKILL.md",
+      "computedHash": "f7bf9b1c01fc2532b968f83a0b4d4f31347fbef116c3e7d6b1319dec508155f8"
+    },
+    "grill-me-architecture": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/software-engineering/grill-me-architecture/SKILL.md",
+      "computedHash": "e1df71b42ea2b90f27863b03218c6cc9575dc17e9408ea5f345a30b8b0aa7c5b"
+    },
+    "legacy-context-engineer": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/migration/legacy-context-engineer/SKILL.md",
+      "computedHash": "7dd1d19267303cf133df9db96fbfacba401b12e8d458722d12347e4196ae4366"
+    },
+    "legacy-feature-archaeologist": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/migration/legacy-feature-archaeologist/SKILL.md",
+      "computedHash": "d1935041adf9147b6eb3573a5c30d56eebd0e94c8613cc8b642bf212f27dba4e"
+    },
+    "liquid-glass-review": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/design-ui-ux/liquid-glass-review/SKILL.md",
+      "computedHash": "c72105ccb4a81dd87f0cee2eaf5bbbb4e2ce0d77fd66336cb63425e3d48e1b51"
+    },
+    "memory-prune": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/token-economy/memory-prune/SKILL.md",
+      "computedHash": "de3d6f63effdf18e2ad33180df00d8eb0d9e6e6c58e353118698417e7c5b485f"
+    },
+    "migration-mythos": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/migration/migration-mythos/SKILL.md",
+      "computedHash": "f2db51bb1e3ee98d892440ccf9937072e3f4d88bb22d2744d142405199afad54"
+    },
+    "opportunity-tree": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/product-management/opportunity-tree/SKILL.md",
+      "computedHash": "d39afd41c19ed5189e52a76a4b0bc07cb6b9370d213c746fc1e4b7a955e9eb94"
+    },
+    "pm-prioritize": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/product-management/pm-prioritize/SKILL.md",
+      "computedHash": "b827472225041f584d2f34d73eaae1b367b1188c3a62d8ffbba87add86cb57c5"
+    },
+    "product-metrics": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/product-management/product-metrics/SKILL.md",
+      "computedHash": "f78bfd6749d620e1aa175e8d57b77570a5d40c222fd33876d74d183a9fd4ba9c"
+    },
+    "product-spec": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/product-management/product-spec/SKILL.md",
+      "computedHash": "e5f4b5198962ddaaa0695826ffc4ad239111c9560446ea549ae4f84d9d2e3f85"
+    },
+    "security-audit": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/governance-security/security-audit/SKILL.md",
+      "computedHash": "8da00034b938e0ddda4dc89f6f5f14b6d45c6390fd80b361ae4cd6f82fe058cb"
+    },
+    "seo-aeo-geo": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/seo-marketing/seo-aeo-geo/SKILL.md",
+      "computedHash": "c44bbbbdcc0e5cec87792ab1259bc4ab94a182cf2a0255ff90cc78960e14e714"
+    },
+    "session-budget": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/token-economy/session-budget/SKILL.md",
+      "computedHash": "235270c02f0aa83a160d9dae06d9b9d6061bb4a40f011fcf894dfd0c3f818f7a"
+    },
+    "silent-tools": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/token-economy/silent-tools/SKILL.md",
+      "computedHash": "4c81fe5e2648e2c1c40483bbb727911f6ab8576a3c54cf8d4e0ae4bec633d91d"
+    },
+    "stoneage": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/token-economy/stoneage/SKILL.md",
+      "computedHash": "3dc268a21dddafccfb0d219f4710ca73909d43d66a8494dc380da648e1ea86e5"
+    },
+    "stoneage-commit": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/token-economy/stoneage-commit/SKILL.md",
+      "computedHash": "dc4700de58d3a001e733b44bd80d875649236771deb354d69640f6d56f7b0448"
+    },
+    "stoneage-compress": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/token-economy/stoneage-compress/SKILL.md",
+      "computedHash": "bfa7375a6db94323cb0fa2c1debcd114f5296339741963061f63bf003f9bdab9"
+    },
+    "stoneage-help": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/token-economy/stoneage-help/SKILL.md",
+      "computedHash": "ee6116703638ad9d4107903cf656e2e0e607546d9feb249d6046404cdc7f9633"
+    },
+    "stoneage-review": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/token-economy/stoneage-review/SKILL.md",
+      "computedHash": "de52cbdc40a4e739a3c33106acc4e7f5786412205dcb93fd4b5354a287fe79e7"
+    },
+    "stoneage-stats": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/token-economy/stoneage-stats/SKILL.md",
+      "computedHash": "9e498a45b542de5cf973ce92226dcdee27ba538b1525f38a31a17ef938b966d8"
+    },
+    "table-review": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/design-ui-ux/table-review/SKILL.md",
+      "computedHash": "c1e41e7cf2264b74636694b68855f7fbcacdbc680e5a2514de35de59acd7fe6d"
+    },
+    "task-batch": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/token-economy/task-batch/SKILL.md",
+      "computedHash": "e14d15e454c7960382fc8a8eb9fb87d7f7fb2c5e7bcce7e2ab8ee2052220e1f3"
+    },
+    "token-economy": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/token-economy/token-economy/SKILL.md",
+      "computedHash": "132a223e918f0fb80d74c62ab90c6d3ccee47b53e339bc079f424c31d01b9e32"
+    },
+    "ux-reviewer": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/design-ui-ux/ux-reviewer/SKILL.md",
+      "computedHash": "d705bf6f2006cafe0777640ac6344262bf7969150d0748164d6a582c6f8b2cd2"
+    },
+    "zero-to-one": {
+      "source": "Casa-Publicadora-Brasileira/ai-guides",
+      "sourceType": "github",
+      "skillPath": "skills/product-management/zero-to-one/SKILL.md",
+      "computedHash": "e4efd3ec8ef2c9946695e0aba1686f41bb5ada0f26acb8b534840746ec037186"
+    }
+  }
+}

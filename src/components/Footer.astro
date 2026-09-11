@@ -1,0 +1,124 @@
+---
+import settings from '../data/settings.json';
+
+const { negocio, atendimento } = settings;
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="app-footer" id="contato" aria-label="Informações do estabelecimento">
+  <div class="footer-card">
+    <div class="footer-block">
+      <div class="block-title">
+        <span>📍</span>
+        <h4>Endereço & Retirada</h4>
+      </div>
+      <p class="block-text">{atendimento.endereco}</p>
+    </div>
+
+    <div class="footer-block">
+      <div class="block-title">
+        <span>🕒</span>
+        <h4>Horário de Funcionamento</h4>
+      </div>
+      <p class="block-text">{atendimento.horario}</p>
+    </div>
+
+    <div class="footer-block">
+      <div class="block-title">
+        <span>💳</span>
+        <h4>Formas de Pagamento</h4>
+      </div>
+      <p class="block-text">{atendimento.pagamentos}</p>
+    </div>
+
+    <div class="footer-block">
+      <div class="block-title">
+        <span>📲</span>
+        <h4>Redes Sociais</h4>
+      </div>
+      <p class="block-text">
+        <a 
+          href={negocio.instagram} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="insta-link"
+        >
+          {negocio.instagram_user} no Instagram
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p class="copyright">
+      © {currentYear} {negocio.nome}. Todos os direitos reservados.
+    </p>
+    <p class="platform-credit">
+      Cardápio Digital Inteligente & Artesanal
+    </p>
+  </div>
+</footer>
+
+<style>
+  .app-footer {
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 1.5rem;
+  }
+
+  .footer-card {
+    background-color: var(--color-surface);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .footer-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .block-title {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .block-title h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .block-text {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+    padding-left: 1.45rem;
+  }
+
+  .insta-link {
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-bottom: 1rem;
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    opacity: 0.7;
+  }
+</style>

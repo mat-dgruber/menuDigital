@@ -1,0 +1,15 @@
+command = ["openclaude"]
+
+rw_maps = [
+  "~/.openclaude",
+  "~/.gemini",
+  "~/.claude",
+  "~/.cache",
+  "~/.local",
+  "~/.npm",
+  "~/.nvm",
+]
+
+ro_maps = [
+  "~/.gitconfig",
+]

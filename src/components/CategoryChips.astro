@@ -1,0 +1,73 @@
+---
+import settings from '../data/settings.json';
+
+const { categorias } = settings;
+---
+
+<nav class="chips-container no-scrollbar" aria-label="Categorias do cardápio">
+  <div class="chips-wrapper">
+    {categorias.map((cat) => (
+      <a
+        href={`#cat-${cat.id}`}
+        class="category-chip"
+      >
+        <span class="chip-icon">{cat.icone}</span>
+        <span class="chip-text">{cat.nome}</span>
+      </a>
+    ))}
+  </div>
+</nav>
+
+<style>
+  .chips-container {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    margin: 0 -1rem 1.25rem -1rem;
+    padding: 0.75rem 1rem;
+    background: rgba(25, 18, 14, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .chips-wrapper {
+    display: flex;
+    gap: 0.5rem;
+    width: max-content;
+  }
+
+  .category-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: var(--radius-full);
+    background-color: var(--color-surface);
+    color: var(--color-text-muted);
+    font-size: 0.82rem;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    white-space: nowrap;
+    scroll-snap-align: start;
+    transition: all var(--transition-fast);
+  }
+
+  .category-chip:hover {
+    color: var(--color-text);
+    border-color: rgba(246, 96, 24, 0.4);
+  }
+
+  .category-chip.active {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border-color: var(--color-primary);
+    box-shadow: 0 2px 10px rgba(246, 96, 24, 0.4);
+  }
+
+  .chip-icon {
+    font-size: 0.95rem;
+  }
+</style>

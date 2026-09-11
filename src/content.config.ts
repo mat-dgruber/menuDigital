@@ -12,6 +12,7 @@ const menu = defineCollection({
     destaque: z.boolean().default(false),
     maisPedido: z.boolean().default(false),
     disponivel: z.boolean().default(true),
+    ordem: z.number().default(0),
     ingredientes: z.array(z.string()).default([]),
     tags: z.array(z.string()).default([]),
   }),

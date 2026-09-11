@@ -10,3 +10,7 @@ dist/
 
 # Local Netlify folder
 .netlify
+
+# Agent tooling scratch & worktrees
+.openclaude/
+.superpowers/

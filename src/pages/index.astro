@@ -7,6 +7,7 @@ import Hero from '../components/Hero.astro';
 import CategoryChips from '../components/CategoryChips.astro';
 import PromoCombo from '../components/PromoCombo.astro';
 import MenuSection from '../components/MenuSection.astro';
+import CartDrawer from '../components/CartDrawer.astro';
 import StickyWhatsAppBar from '../components/StickyWhatsAppBar.astro';
 import Footer from '../components/Footer.astro';
 
@@ -64,7 +65,10 @@ const grupos = categorias.map((cat) => {
   </main>
 
   <StickyWhatsAppBar />
+  <CartDrawer />
 </Base>
+
+<script src="../scripts/cartController.ts"></script>
 
 <style>
   .menu-sections-wrapper {

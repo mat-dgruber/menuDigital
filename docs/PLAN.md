@@ -53,9 +53,12 @@ flowchart TD
         FOOTER["Footer.astro\n(Horários, Endereço, Redes e Copyright)"]
     end
 
-    subgraph CamadaCMS ["4. Gestão de Conteúdo & Infraestrutura"]
-        CMS["public/admin/config.yml + index.html\n(Decap CMS + Netlify Identity)"]
-        NETLIFY["netlify.toml\n(Headers de Segurança CSP, HSTS e Cache)"]
+    subgraph CamadaAdmin ["4. Gestão de Conteúdo & Infraestrutura Firebase"]
+        ADMIN["src/pages/admin/\n(Admin Nativo Mobile-First)"]
+        FAUTH["Firebase Auth\n(Login seguro por e-mail/senha)"]
+        FSTORE["Cloud Firestore\n(Sync em tempo real de produtos e config)"]
+        FSTORG["Firebase Storage\n(5 GB para fotos em alta resolução)"]
+        FHOST["Firebase Hosting / Netlify\n(CDN global, SSL e cache offline)"]
         DIST["dist/ (HTML/CSS estático otimizado)"]
     end
 
@@ -66,9 +69,11 @@ flowchart TD
     ROOT --> GLOBAL
     GLOBAL --> CamadaComponentes
     CamadaComponentes --> DIST
-    CMS -.->|Gera Commits no Git| CFG
-    CMS -.->|Gera Commits no Git| CNT
-    NETLIFY --> DIST
+    ADMIN --> FAUTH
+    ADMIN --> FSTORE
+    ADMIN --> FSTORG
+    FSTORE -.->|Sync em Tempo Real| CamadaComponentes
+    FHOST --> DIST
 ```
 
 ### Contrato de Design Tokens (`:root`)
@@ -89,6 +94,7 @@ Os componentes visuais consomem variáveis semânticas que recebem os valores do
 Abaixo estão consolidadas as 44 melhorias identificadas na auditoria pré-construção, integradas ao plano com suas respectivas ações corretivas:
 
 ### 3.1 Segurança (Security by Design)
+
 | ID | Diagnóstico | Ação Mitigadora no Plano |
 | :--- | :--- | :--- |
 | **SEC-01** | `netlify-identity-widget.js` carregado no site público | **Remover do `Base.astro`**. Isolar o script de autenticação exclusivamente em `public/admin/index.html`. |
@@ -99,6 +105,7 @@ Abaixo estão consolidadas as 44 melhorias identificadas na auditoria pré-const
 | **SEC-06** | Cabeçalhos HTTP de segurança ausentes | Implementar em `netlify.toml`: `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin` e `Strict-Transport-Security (HSTS)`. |
 
 ### 3.2 Performance & Core Web Vitals
+
 | ID | Diagnóstico | Ação Mitigadora no Plano |
 | :--- | :--- | :--- |
 | **PERF-01** | Bloqueio de renderização por fontes externas | Injetar `<link rel="preconnect">` para `fonts.googleapis.com` e `fonts.gstatic.com` com preload de estilo em `Base.astro`. |
@@ -109,6 +116,7 @@ Abaixo estão consolidadas as 44 melhorias identificadas na auditoria pré-const
 | **PERF-06** | Minificação de saída | Configurar `compressHTML: true` no `astro.config.mjs`. |
 
 ### 3.3 Design System & Experiência Mobile-First
+
 | ID | Diagnóstico | Ação Mitigadora no Plano |
 | :--- | :--- | :--- |
 | **DES-01** | Header textual simplificado | `Nav.astro` com suporte híbrido: exibe logo em imagem quando configurada, com fallback elegante para tipografia semântica. |
@@ -119,6 +127,7 @@ Abaixo estão consolidadas as 44 melhorias identificadas na auditoria pré-const
 | **DES-06** | Micro-interações e feedback | Efeitos suaves de elevação ao toque/hover nos cards (`transform: translateY(-2px)`), transições de borda e feedback ao clicar em pedir. |
 
 ### 3.4 Resiliência & Acessibilidade (WCAG 2.2 AA)
+
 | ID | Diagnóstico | Ação Mitigadora no Plano |
 | :--- | :--- | :--- |
 | **RES-01** | Imagens ausentes ou corrompidas | Implementar fallback SVG padronizado caso uma imagem de upload falhe ou não seja fornecida. |
@@ -130,6 +139,7 @@ Abaixo estão consolidadas as 44 melhorias identificadas na auditoria pré-const
 | **A11Y-04** | Contraste de cores calibrado | Presets de temas validados garantindo taxa de contraste mínima de 4.5:1 para leitura e 3:1 para elementos de interface. |
 
 ### 3.5 Reutilização Multi-Cliente
+
 | ID | Diagnóstico | Ação Mitigadora no Plano |
 | :--- | :--- | :--- |
 | **REUSE-01** | Catálogo de Temas Prontos | Criar pasta `docs/presets/` com 4 temas canônicos documentados: `dark-brasa.json`, `light-editorial.json`, `neon-sushi.json` e `pastel-confeitaria.json`. |
@@ -341,22 +351,28 @@ flowchart LR
 
 ---
 
-### Fase 5: Integração do Decap CMS & Suíte Multi-Cliente
-**Objetivo:** Habilitar a autonomia de edição do cliente final e formalizar as ferramentas de replicação.
-1. Configurar `public/admin/index.html`:
-   - Carregamento seguro do Decap CMS com SRI hash.
-   - Integração do Netlify Identity Widget restrita ao escopo do painel `/admin/`.
-2. Criar `public/admin/config.yml`:
-   - Configuração do backend (`git-gateway` em produção, `local_backend: true` em dev).
-   - Coleção `cardapio` para gestão de itens frontmatter.
-   - Coleção `config` para edição segura de textos, horários e cores do `settings.json`.
-3. Criar catálogo de presets em `docs/presets/`:
-   - `dark-brasa.json` (Tema Kaleb's / Churrasco / Hamburgueria).
-   - `light-editorial.json` (Café / Bistrô / Confeitaria tradicional).
-   - `neon-sushi.json` (Japonês / Poke / Bar contemporâneo).
-   - `pastel-doceria.json` (Doceria / Sorveteria / Padaria artesanal).
-4. Criar script utilitário `scripts/setup-client.sh`:
-   - Script bash interativo que recebe o nome do novo cliente e o preset desejado, copiando os arquivos base e deixando o projeto pronto para deploy.
+### Fase 5: Admin Nativo Mobile-First & Ecossistema Firebase
+**Objetivo:** Eliminar a dependência do Decap CMS e do Netlify Identity, construindo um painel administrativo proprietário, ultra-rápido, mobile-first e com sincronização de dados em tempo real via Firebase.
+
+1. **Configuração da Infraestrutura Firebase**:
+   - Inicializar projeto Firebase com plano Spark (gratuito perpétuo, sem risco de pausa por inatividade e sem cartão).
+   - Criar `src/lib/firebase.ts` inicializando SDK modular (`firebase/app`, `firebase/auth`, `firebase/firestore`, `firebase/storage`).
+   - Configurar `firebase.json`, `firestore.rules` (leitura pública, escrita autenticada) e `storage.rules` (upload autenticado com restrição de MIME type e tamanho).
+2. **Autenticação Administrativa Nativa**:
+   - Tela de login em `src/pages/admin/login.astro` com Firebase Auth por e-mail e senha.
+   - Redirecionamento automático de sessão e proteção de rotas administrativas.
+3. **Painel de Controle Mobile-First (`src/pages/admin/index.astro`)**:
+   - **Controle de Disponibilidade em 1 Toque**: Toggle instantâneo (*Disponível / Esgotado*) por prato, refletindo no mesmo segundo no cardápio público sem esperar build.
+   - **Gestão de Produtos**: Modal/formulário de edição de preços, nomes, descrições, categorias e flags de destaque (⭐).
+   - **Upload Direto de Fotos**: Envio de imagens diretamente do celular/câmera para o Firebase Storage (5 GB de cota gratuita), atualizando a URL pública do prato no Firestore.
+   - **Gestão de Estabelecimento**: Edição direta de horários de funcionamento, telefone do WhatsApp e mensagens padrão.
+4. **Sincronização em Tempo Real no Cardápio Público**:
+   - Conexão do `src/pages/index.astro` ao Firestore para carregar pratos atualizados com fallback estático offline nativo (`enableIndexedDbPersistence`).
+5. **Suíte Multi-Cliente & Presets**:
+   - Catálogo de presets em `docs/presets/` (`dark-brasa.json`, `light-editorial.json`, `neon-sushi.json`, `pastel-doceria.json`).
+   - Script de bootstrap `scripts/setup-client.sh` configurado para instanciar novos estabelecimentos no Firebase em menos de 10 minutos.
+6. **Hospedagem Unificada (Firebase Hosting)**:
+   - Configuração de deploy em 1 comando (`firebase deploy`) aproveitando a CDN global do Google, ou mantendo deploy híbrido no Netlify.
 
 ---
 
@@ -367,7 +383,8 @@ flowchart LR
 3. Auditoria de performance Lighthouse móvel visando scores ≥ 95.
 4. Validação do fluxo completo de ponta a ponta:
    - Acesso via mobile → visualização do cardápio → clique no WhatsApp → abertura do chat com mensagem configurada.
-   - Edição de item no Decap CMS → commit automático no Git → deploy automático na Netlify.
+   - Login no Admin Nativo (`/admin`) → alteração de disponibilidade de item → reflexo instantâneo no cardápio sem rebuild.
+   - Upload de foto de prato direto do celular → armazenamento no Firebase Storage → renderização no cardápio.
 5. Execução do checklist de handoff conforme formalizado no [readme.md](file:///Users/matheus.diniz_1/Documents/GitHub/menuDigital/docs/readme.md).
 
 ---
@@ -380,17 +397,20 @@ Cada novo cardápio gerado a partir deste template deve cumprir obrigatoriamente
 - [ ] **WhatsApp:** Número de telefone testado e mensagem padrão validada em dispositivo real.
 - [ ] **Itens e Categorias:** Produtos cadastrados com fotos, descrições atraentes e preços conferidos com o cardápio impresso/físico do local.
 - [ ] **Horários e Localização:** Endereço completo e horários de atendimento atualizados.
-- [ ] **Decap CMS:** Usuário administrador convidado e autenticado via Netlify Identity.
+- [ ] **Admin Nativo & Firebase:** Usuário administrador criado no Firebase Auth e testado no `/admin/login`.
+- [ ] **Regras de Segurança:** `firestore.rules` e `storage.rules` publicadas e validadas contra escrita anônima.
 - [ ] **Domínio Próprio:** Domínio configurado no DNS com certificado SSL/HTTPS ativo e forçado.
 - [ ] **Performance:** Teste no PageSpeed Insights confirmando LCP < 1,5s no mobile.
-- [ ] **Treinamento:** Envio do guia rápido de 3 passos ao proprietário para atualização de preços e fotos pelo celular.
+- [ ] **Treinamento:** Envio do guia rápido de 3 passos ao proprietário para alternar disponibilidade e fotos pelo celular.
 
 ---
 
 ## 7. Próximos Passos Imediatos
 
 Com este plano aprovado, a ordem de execução recomendada é:
-1. **Iniciar a Fase 1:** Criar a estrutura base do Astro e o `netlify.toml` com as regras de segurança.
-2. **Executar a Fase 2:** Configurar schemas Zod e instanciar os dados do Kaleb's Esfiharia.
-3. **Executar as Fases 3 e 4:** Construir o Design System e os componentes Astro espelhando o visual do Stitch.
-4. **Finalizar com as Fases 5 e 6:** Configurar o Decap CMS e os presets de reutilização.
+1. **Fases 1 a 4 (Base & Design System):** Concluir os componentes visuais do cardápio, Sacola de Pedidos WhatsApp e status Aberto/Fechado.
+2. **Fase 5 (Admin Nativo + Firebase):**
+   - Configurar o SDK do Firebase (`src/lib/firebase.ts`) e regras de segurança.
+   - Desenvolver a interface do Admin Nativo (`/admin`) otimizada para smartphones.
+   - Implementar persistência no Firestore e upload para Firebase Storage.
+3. **Fase 6 (Handoff & Homologação):** Validar métricas Lighthouse, auditoria de segurança e homologação do Kaleb's Esfiharia.

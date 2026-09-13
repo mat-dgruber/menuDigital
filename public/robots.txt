@@ -1,0 +1,35 @@
+# Robots.txt — Cardápio Digital (Kaleb's Esfiharia)
+# Diretrizes para Rastreadores de Busca Tradicional e Agentes de IA Generativa
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+# Agentes de Busca Generativa (GEO / AEO)
+User-agent: GPTBot
+Allow: /
+Disallow: /admin/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /admin/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin/
+
+User-agent: Bytespider
+Allow: /
+Disallow: /admin/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin/
+
+# Descoberta de Contexto por IA
+# llms.txt: /llms.txt
+# llms-full.txt: /llms-full.txt

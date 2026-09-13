@@ -8,23 +8,48 @@ const waGeneralUrl = `https://wa.me/${atendimento.whatsapp}?text=${encodeURIComp
 
 <aside class="sticky-bar" aria-label="Ação rápida de pedido">
   <div class="sticky-inner">
-    <div class="bar-info">
-      <span class="bar-title">Pronto para pedir?</span>
-      <span class="bar-subtitle">Toque e envie seu pedido pelo WhatsApp</span>
+    <!-- Estado Padrão: Sacola Vazia -->
+    <div id="sticky-empty-view" class="sticky-view-mode">
+      <div class="bar-info">
+        <span class="bar-title" id="sticky-title">Pronto para pedir?</span>
+        <span class="bar-subtitle" id="sticky-subtitle">Toque e envie seu pedido pelo WhatsApp</span>
+      </div>
+
+      <a
+        href={waGeneralUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="wa-main-btn"
+        aria-label={`Fazer pedido no ${negocio.nome} pelo WhatsApp`}
+      >
+        <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.9c0 2.1.55 4.06 1.6 5.83L2 22l4.4-1.15a9.86 9.86 0 0 0 5.64 1.72c5.46 0 9.9-4.45 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.02c-1.66 0-3.28-.45-4.7-1.29l-.34-.2-2.6.68.7-2.54-.22-.35a8.2 8.2 0 0 1-1.26-4.42c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.24 8.23Z"/>
+        </svg>
+        <span>Pedir no WhatsApp</span>
+      </a>
     </div>
 
-    <a 
-      href={waGeneralUrl} 
-      target="_blank" 
-      rel="noopener noreferrer" 
-      class="wa-main-btn"
-      aria-label={`Fazer pedido no ${negocio.nome} pelo WhatsApp`}
-    >
-      <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.9c0 2.1.55 4.06 1.6 5.83L2 22l4.4-1.15a9.86 9.86 0 0 0 5.64 1.72c5.46 0 9.9-4.45 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.02c-1.66 0-3.28-.45-4.7-1.29l-.34-.2-2.6.68.7-2.54-.22-.35a8.2 8.2 0 0 1-1.26-4.42c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.24 8.23Z"/>
-      </svg>
-      <span>Pedir no WhatsApp</span>
-    </a>
+    <!-- Estado Ativo: Sacola com Itens -->
+    <div id="sticky-cart-view" class="sticky-view-mode" style="display: none;">
+      <div class="cart-bar-info">
+        <span class="cart-pill-badge">
+          <span>🛒</span> <span id="sticky-items-count">0 itens</span>
+        </span>
+        <span class="cart-total-value" id="sticky-total-value">R$ 0,00</span>
+      </div>
+
+      <button
+        type="button"
+        id="btn-open-cart-drawer"
+        class="btn-open-cart"
+        aria-label="Abrir sacola de pedidos"
+      >
+        <span>Ver Sacola</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
   </div>
 </aside>
 
@@ -46,10 +71,14 @@ const waGeneralUrl = `https://wa.me/${atendimento.whatsapp}?text=${encodeURIComp
   .sticky-inner {
     max-width: 640px;
     margin: 0 auto;
+  }
+
+  .sticky-view-mode {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 0.85rem;
+    width: 100%;
   }
 
   .bar-info {
@@ -92,8 +121,57 @@ const waGeneralUrl = `https://wa.me/${atendimento.whatsapp}?text=${encodeURIComp
   }
 
   .wa-main-btn:hover {
-    background-color: #008f40;
+    background-color: var(--color-whatsapp-hover);
     transform: translateY(-2px);
     box-shadow: 0 6px 18px rgba(0, 167, 76, 0.55);
+  }
+
+  /* Cart View Mode */
+  .cart-bar-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .cart-pill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background-color: rgba(246, 96, 24, 0.15);
+    color: var(--color-primary);
+    border: 1px solid rgba(246, 96, 24, 0.35);
+    padding: 0.1rem 0.45rem;
+    border-radius: var(--radius-full);
+    font-size: 0.72rem;
+    font-weight: 800;
+    width: fit-content;
+  }
+
+  .cart-total-value {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.1;
+  }
+
+  .btn-open-cart {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background-color: var(--color-primary);
+    color: #ffffff;
+    padding: 0.75rem 1.35rem;
+    border-radius: var(--radius-full);
+    font-size: 0.9rem;
+    font-weight: 800;
+    white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(246, 96, 24, 0.4);
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+  }
+
+  .btn-open-cart:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 18px rgba(246, 96, 24, 0.55);
   }
 </style>

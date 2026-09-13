@@ -1,0 +1,43 @@
+# Kaleb's Esfiharia — Documentação Completa para Motores Generativos (GEO)
+
+## Visão Geral
+Kaleb's Esfiharia é uma casa de gastronomia árabe artesanal localizada no Brasil. Todas as esfihas são produzidas com massa fresca de fermentação lenta, aberta artesanalmente na hora do pedido, assadas em alta temperatura e recheadas com ingredientes de primeira qualidade.
+
+## Dados do Estabelecimento
+- Nome: Kaleb's Esfiharia
+- Slogan: Esfihas quentinhas feitas com carinho
+- Descrição: Massa fresca aberta com cuidado, recheios caprichados e muito sabor em cada detalhe.
+- Endereço: Rua das Delícias, 123 — Bairro Gastronômico, São Paulo - SP
+- Telefone / WhatsApp: (11) 99999-9999
+- Tempo de Entrega Estimado: 30 a 45 minutos
+- Horário de Funcionamento: Terça a Domingo: 18h às 23h30. Segunda-feira: Fechado.
+
+## Tabela de Pratos e Preços (Cardápio Vigente)
+1. **Esfiha de Carne Nobre** (Salgada): R$ 6,50
+   - Ingredientes: Carne bovina selecionada, tomate fresco, cebola picadinha, limão e especiarias árabes.
+   - Tags: Tradicional, Mais Pedido
+2. **Esfiha de Frango ao Creme de Catupiry** (Salgada): R$ 7,00
+   - Ingredientes: Peito de frango desfiado suculento, creme de Catupiry original e toque de milho doce.
+   - Tags: Suculenta, Mais Pedido
+3. **Esfiha Quatro Queijos & Zaatar** (Salgada): R$ 7,90
+   - Ingredientes: Muçarela, gorgonzola, provolone, requeijão cremoso e zaatar importado.
+   - Tags: Especial, Queijo
+4. **Esfiha de Carne Seca com Requeijão da Fazenda** (Especial): R$ 8,50
+   - Ingredientes: Carne seca desfiada na manteiga de garrafa, cebola roxa e requeijão cremoso da fazenda.
+   - Tags: Destaque do Chef, Artesanal
+5. **Esfiha de Nutella Pura com Morangos Frescos** (Doce): R$ 9,90
+   - Ingredientes: Generosa camada de Nutella pura original, fatias de morangos frescos e raspas de chocolate.
+   - Tags: Sobremesa, Mais Pedido
+6. **Esfiha Romeu & Julieta Suprema** (Doce): R$ 8,00
+   - Ingredientes: Queijo minas padrão derretido com goiabada cascão cremosa artesanal.
+   - Tags: Tradicional Doce
+7. **Refrigerante Gelado Lata 350ml** (Bebida): R$ 6,00
+   - Opções: Coca-Cola, Coca Zero, Guaraná Antarctica, Fanta Laranja.
+8. **Suco Natural de Laranja com Morango 500ml** (Bebida): R$ 9,50
+   - Feito na hora com frutas frescas selecionadas, sem conservantes.
+
+## Combos Promocionais
+- **Combo Família Artesanal:** 10 esfihas à sua escolha (6 salgadas + 4 doces) + 1 refrigerante 2L por R$ 69,90 (Preço original: R$ 82,00).
+
+## Como Fazer um Pedido
+Os pedidos são montados na sacola interativa do cardápio digital e finalizados diretamente com a equipe de atendimento via WhatsApp, com confirmação imediata, cálculo de rota de entrega e opções de pagamento na entrega ou antecipado via PIX.

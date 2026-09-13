@@ -1,0 +1,126 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Habilita o proxy local (npx decap-server) para testar e salvar diretamente em disco sem Netlify Identity
+local_backend: true
+
+locale: pt
+
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: cardapio
+    label: Cardápio
+    label_singular: Item do Cardápio
+    folder: src/content/menu
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { name: nome, label: Nome do Prato / Produto, widget: string }
+      - { name: descricao, label: Descrição, widget: text, required: false }
+      - { name: preco, label: "Preço (R$)", widget: number, value_type: float, step: 0.5 }
+      - name: categoria
+        label: Categoria
+        widget: select
+        options:
+          - { label: Esfirras Salgadas, value: salgadas }
+          - { label: Esfirras Especiais, value: especiais }
+          - { label: Esfirras Doces, value: doces }
+          - { label: Bebidas, value: bebidas }
+      - { name: foto, label: Foto do Produto, widget: image, required: false }
+      - { name: destaque, label: "Destaque no Topo?", widget: boolean, default: false }
+      - { name: maisPedido, label: "Selo de Mais Pedido?", widget: boolean, default: false }
+      - { name: disponivel, label: "Disponível no Cardápio?", widget: boolean, default: true }
+      - { name: ordem, label: Ordem de Exibição, widget: number, default: 0, value_type: int }
+      - name: ingredientes
+        label: Ingredientes / Composição
+        widget: list
+        required: false
+        field: { name: item, label: Ingrediente, widget: string }
+      - name: tags
+        label: "Tags / Selos (Ex: Tradicional, Artesanal)"
+        widget: list
+        required: false
+        field: { name: tag, label: Tag, widget: string }
+
+  - name: configuracoes
+    label: Configurações
+    editor:
+      preview: false
+    files:
+      - name: settings
+        label: Dados do Estabelecimento & Funcionamento
+        file: src/data/settings.json
+        format: json
+        editor:
+          preview: false
+        fields:
+          - name: negocio
+            label: Dados do Negócio
+            widget: object
+            fields:
+              - { name: nome, label: Nome do Estabelecimento, widget: string }
+              - { name: ramo, label: "Ramo / Segmento (ex: Esfihas Artesanais)", widget: string }
+              - { name: slogan, label: Slogan, widget: string }
+              - { name: descricao, label: Descrição Institucional, widget: text }
+              - { name: selo_hero, label: "Selo do Banner (Hero)", widget: string }
+              - { name: nota, label: "Avaliação (Nota de 1 a 5)", widget: number, value_type: float, step: 0.1 }
+              - { name: total_pedidos_mes, label: Texto de Prova Social, widget: string }
+              - { name: logo, label: Logo, widget: image, required: false }
+              - { name: hero_img, label: "Imagem de Fundo do Banner (Hero)", widget: image, required: false }
+              - { name: instagram, label: Link do Instagram, widget: string, required: false }
+              - { name: instagram_user, label: "Usuário do Instagram (@)", widget: string, required: false }
+
+          - name: atendimento
+            label: Atendimento & WhatsApp
+            widget: object
+            fields:
+              - { name: horario, label: "Horário Descritivo (ex: Terça a Domingo: 18h às 23h30)", widget: string }
+              - name: status_operacional
+                label: "Controle de Status (Aberto/Fechado)"
+                widget: select
+                options:
+                  - { label: "Automático (seguir horários configurados)", value: auto }
+                  - { label: "Forçar Aberto (aberto agora)", value: aberto }
+                  - { label: "Forçar Fechado (fechado hoje / folga)", value: fechado }
+                default: auto
+              - name: programacao_horarios
+                label: Programação de Horários Automáticos
+                widget: object
+                fields:
+                  - { name: hora_abertura, label: "Hora de Abertura (HH:mm)", widget: string, default: "18:00" }
+                  - { name: hora_fechamento, label: "Hora de Fechamento (HH:mm)", widget: string, default: "23:30" }
+                  - name: dias_semana
+                    label: "Dias de Funcionamento (0=Dom, 1=Seg, 2=Ter, 3=Qua, 4=Qui, 5=Sex, 6=Sáb)"
+                    widget: list
+                    field: { name: dia, label: "Número do Dia (0 a 6)", widget: number, value_type: int }
+              - { name: tempo_entrega, label: "Previsão de Entrega (ex: 30-45 min)", widget: string }
+              - { name: endereco, label: Endereço Completo, widget: string }
+              - { name: whatsapp, label: Número do WhatsApp (apenas números com DDI e DDD), widget: string, hint: "Ex: 5515998343754" }
+              - { name: mensagem_padrao, label: Mensagem Inicial no WhatsApp, widget: string }
+              - { name: pagamentos, label: Formas de Pagamento Aceitas, widget: string }
+
+          - name: combo_destaque
+            label: Combo em Destaque
+            widget: object
+            fields:
+              - { name: ativo, label: "Exibir Combo no Hero?", widget: boolean, default: true }
+              - { name: badge, label: Badge de Destaque, widget: string }
+              - { name: titulo, label: Título do Combo, widget: string }
+              - { name: descricao, label: Descrição do Combo, widget: text }
+              - { name: preco_de, label: "Preço Original (De)", widget: number, value_type: float, step: 0.5 }
+              - { name: preco_por, label: "Preço Promocional (Por)", widget: number, value_type: float, step: 0.5 }
+              - { name: economia, label: Texto de Economia, widget: string }
+              - { name: foto, label: Foto do Combo, widget: image, required: false }
+
+          - name: categorias
+            label: Categorias do Cardápio
+            widget: list
+            fields:
+              - { name: id, label: "Identificador (slug, ex: salgadas)", widget: string }
+              - { name: nome, label: Nome de Exibição, widget: string }
+              - { name: icone, label: "Emoji / Ícone", widget: string }

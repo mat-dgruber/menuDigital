@@ -23,11 +23,21 @@ const { tema, negocio, atendimento } = settings;
     <title>{title}</title>
     <meta name="description" content={description} />
     
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href={Astro.url.href} />
+    <link rel="describedby" href="/llms.txt" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" />
+
     <!-- Open Graph / Redes Sociais & WhatsApp -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={negocio.nome} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={negocio.hero_img} />
+    <meta property="og:url" content={Astro.url.href} />
     <meta name="theme-color" content={tema.cor_fundo} />
 
     <!-- Google Fonts com Preconnect Otimizado (LCP/Performance) -->
@@ -49,26 +59,43 @@ const { tema, negocio, atendimento } = settings;
       }
     `}></style>
 
-    <!-- Schema.org JSON-LD (SEO Local de Restaurante) -->
+    <!-- Schema.org JSON-LD (SEO Local & AEO com padrão @graph) -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "Restaurant",
-      "name": negocio.nome,
-      "description": negocio.descricao,
-      "image": negocio.hero_img,
-      "telephone": atendimento.whatsapp,
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": atendimento.endereco
-      },
-      "openingHours": atendimento.horario,
-      "servesCuisine": "Esfihas Artesanais",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": negocio.nota,
-        "bestRating": "5",
-        "ratingCount": "320"
-      }
+      "@graph": [
+        {
+          "@type": "Restaurant",
+          "@id": `${Astro.url.origin}/#restaurant`,
+          "name": negocio.nome,
+          "description": negocio.descricao,
+          "image": negocio.hero_img,
+          "telephone": atendimento.whatsapp,
+          "url": Astro.url.origin,
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": atendimento.endereco,
+            "addressCountry": "BR"
+          },
+          "openingHours": atendimento.horario,
+          "servesCuisine": "Esfihas Artesanais",
+          "priceRange": "$",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": negocio.nota,
+            "bestRating": "5",
+            "ratingCount": "500"
+          },
+          "hasMenu": `${Astro.url.origin}/#conteudo-cardapio`
+        },
+        {
+          "@type": "WebSite",
+          "@id": `${Astro.url.origin}/#website`,
+          "url": Astro.url.origin,
+          "name": negocio.nome,
+          "description": negocio.descricao,
+          "publisher": { "@id": `${Astro.url.origin}/#restaurant` }
+        }
+      ]
     })} />
   </head>
   <body>

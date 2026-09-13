@@ -1,0 +1,104 @@
+---
+// Ponto de entrada do Decap CMS — Tema Clean Studio com Acentos em Laranja Brasa
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel Administrativo | Cardápio Digital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="cms-config-url" type="text/yaml" href="/admin/config.yml" />
+    <!-- Netlify Identity Widget para autenticação e convites do Decap CMS -->
+    <script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <style is:global>
+      :root {
+        --brand-primary: #f66018;
+        --brand-primary-hover: #e05310;
+        --brand-primary-light: rgba(246, 96, 24, 0.08);
+        --brand-font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      }
+
+      /* Tipografia global moderna */
+      * {
+        font-family: var(--brand-font) !important;
+      }
+
+      /* Botões de Ação Primária em Laranja da Marca */
+      button[class*="Button-default-primary"],
+      button[class*="PublishButton"],
+      [class*="StyledButton-default-primary"],
+      a[class*="StyledButton-default-primary"] {
+        background-color: var(--brand-primary) !important;
+        border-color: var(--brand-primary) !important;
+        color: #ffffff !important;
+        font-weight: 700 !important;
+        border-radius: 8px !important;
+        transition: all 0.2s ease !important;
+      }
+
+      button[class*="Button-default-primary"]:hover,
+      button[class*="PublishButton"]:hover,
+      [class*="StyledButton-default-primary"]:hover {
+        background-color: var(--brand-primary-hover) !important;
+        border-color: var(--brand-primary-hover) !important;
+        box-shadow: 0 4px 12px rgba(246, 96, 24, 0.25) !important;
+      }
+
+      /* Links ativos na barra lateral */
+      [class*="SidebarNavLink"][class*="active"],
+      a[class*="SidebarNavLink"]:hover {
+        color: var(--brand-primary) !important;
+        border-left: 3px solid var(--brand-primary) !important;
+        background-color: var(--brand-primary-light) !important;
+        font-weight: 700 !important;
+      }
+
+      /* Campos em foco */
+      input:focus,
+      textarea:focus,
+      select:focus {
+        border-color: var(--brand-primary) !important;
+        box-shadow: 0 0 0 2px rgba(246, 96, 24, 0.2) !important;
+        outline: none !important;
+      }
+
+      /* Cartões de coleção suaves e elegantes */
+      [class*="CardContainer"]:hover,
+      [class*="CollectionCard"]:hover {
+        border-color: rgba(246, 96, 24, 0.4) !important;
+      }
+
+      /* Painel de Preview com borda limpa e divisória */
+      [class*="PreviewPaneContainer"] {
+        background-color: #19120e !important;
+        border-left: 1px solid #e2e8f0 !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Decap CMS Core -->
+    <script is:inline src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+    <!-- Custom CMS Init (Estilos de Preview e Templates Reativos) -->
+    <script is:inline src="/admin/cms-init.js"></script>
+
+    <script is:inline>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", function(user) {
+          if (!user) {
+            window.netlifyIdentity.on("login", function() {
+              document.location.reload();
+            });
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+# Kaleb's Esfiharia — Cardápio Digital
+
+> Cardápio digital e sistema de pedidos artesanais especializado em esfihas abertas, doces e salgadas, com massa de fermentação lenta e atendimento via WhatsApp.
+
+## Informações do Estabelecimento
+- **Nome:** Kaleb's Esfiharia
+- **Especialidade:** Esfihas Artesanais (Salgadas, Especiais e Doces)
+- **Avaliação:** 4.9/5 estrelas (+500 pedidos/mês)
+- **Horário de Atendimento:** Terça a Domingo: 18h às 23h30 (Segunda: Fechado)
+- **Tempo Médio de Entrega:** 30 a 45 minutos
+- **Modalidades:** Delivery com entrega em domicílio e Retirada no balcão
+- **Formas de Pagamento:** PIX, Cartão de Crédito, Cartão de Débito e Dinheiro com troco
+
+## Cardápio & Categorias
+- **Esfihas Salgadas:** Carne Nobre com tempero árabe, Frango ao Creme de Catupiry, Queijo Minas Padrão e Zaatar.
+- **Esfihas Especiais:** Carne Seca desfiada com Requeijão da Fazenda, Quatro Queijos Selecionados.
+- **Esfihas Doces:** Nutella Pura com Morangos Frescos, Romeu & Julieta Suprema (Goiabada Cascão com Queijo).
+- **Bebidas:** Refrigerantes em lata (350ml) e Sucos Naturais (500ml).
+- **Combos:** Combo Família Artesanal (10 esfihas selecionadas + refrigerante 2L com desconto).
+
+## Canais de Pedido
+- [Cardápio Online](/)
+- Pedidos via WhatsApp: +55 11 99999-9999
+- Instagram: @kalebesfiharia
+
+## Opcional
+- [Painel do Estabelecimento](/admin/): Gestão de pratos e operação (acesso restrito da equipe).

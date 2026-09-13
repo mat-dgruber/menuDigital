@@ -25,12 +25,17 @@
   },
   "atendimento": {
     "horario": "Terça a Domingo: 18h às 23h30",
-    "status_badge": "ABERTO AGORA",
+    "status_operacional": "auto",
+    "programacao_horarios": {
+      "dias_semana": [0, 2, 3, 4, 5, 6],
+      "hora_abertura": "18:00",
+      "hora_fechamento": "23:30"
+    },
     "tempo_entrega": "30-45 min",
     "endereco": "Rua das Esfihas, 450 — Centro",
     "whatsapp": "5515998343754",
     "mensagem_padrao": "Olá! Gostaria de fazer um pedido no Kaleb's Esfiharia.",
-    "pagamentos": "Pix (com 5% OFF), Débito, Crédito e VR / Sodexo"
+    "pagamentos": "Pix (com 5% OFF), Débito, Crédito e Dinheiro"
   },
   "combo_destaque": {
     "ativo": true,

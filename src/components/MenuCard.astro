@@ -22,6 +22,7 @@ const { item } = Astro.props;
 const { nome, descricao, preco, foto, destaque, disponivel, ingredientes, tags } = item.data;
 const { atendimento } = settings;
 
+const itemId = item.id || nome.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
 const precoFmt = `R$ ${preco.toFixed(2).replace('.', ',')}`;
 
 // URL contextualizada do WhatsApp para o item específico
@@ -77,18 +78,34 @@ const waItemUrl = `https://wa.me/${atendimento.whatsapp}?text=${encodeURICompone
       {disponivel === false ? (
         <span class="soldout-label">Esgotado por hoje</span>
       ) : (
-        <a 
-          href={waItemUrl} 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          class="card-order-btn"
-          aria-label={`Pedir ${nome} por ${precoFmt} no WhatsApp`}
+        <div
+          class="card-cart-controls"
+          data-cart-control
+          data-item-id={itemId}
+          data-item-nome={nome}
+          data-item-preco={preco}
+          data-item-foto={foto || ''}
         >
-          <svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.9c0 2.1.55 4.06 1.6 5.83L2 22l4.4-1.15a9.86 9.86 0 0 0 5.64 1.72c5.46 0 9.9-4.45 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Z"/>
-          </svg>
-          <span>Pedir</span>
-        </a>
+          <button
+            type="button"
+            class="add-to-cart-btn"
+            aria-label={`Adicionar ${nome} à sacola por ${precoFmt}`}
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>Adicionar</span>
+          </button>
+
+          <div class="qty-stepper" style="display: none;">
+            <button type="button" class="qty-btn qty-btn--minus" aria-label={`Diminuir quantidade de ${nome}`}>
+              <span class="qty-minus-icon">−</span>
+            </button>
+            <span class="qty-display" aria-live="polite">1</span>
+            <button type="button" class="qty-btn qty-btn--plus" aria-label={`Aumentar quantidade de ${nome}`}>+</button>
+          </div>
+        </div>
       )}
     </div>
   </div>
@@ -124,12 +141,17 @@ const waItemUrl = `https://wa.me/${atendimento.whatsapp}?text=${encodeURICompone
     overflow: hidden;
     flex-shrink: 0;
     background-color: var(--color-surface);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.02) 25%, rgba(255, 255, 255, 0.06) 50%, rgba(255, 255, 255, 0.02) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite ease-in-out;
   }
 
   .card-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    position: relative;
+    z-index: 1;
   }
 
   .card-star-badge {
@@ -172,6 +194,7 @@ const waItemUrl = `https://wa.me/${atendimento.whatsapp}?text=${encodeURICompone
     font-weight: 800;
     color: var(--color-primary);
     white-space: nowrap;
+    font-variant-numeric: tabular-nums;
   }
 
   .card-desc {
@@ -253,26 +276,80 @@ const waItemUrl = `https://wa.me/${atendimento.whatsapp}?text=${encodeURICompone
     margin-top: auto;
   }
 
-  .card-order-btn {
+  .card-cart-controls {
+    display: flex;
+    align-items: center;
+  }
+
+  .add-to-cart-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
-    background-color: rgba(0, 167, 76, 0.15);
-    color: #34d399;
-    border: 1px solid rgba(0, 167, 76, 0.35);
-    padding: 0.55rem 0.9rem;
-    min-height: 48px;
+    gap: 0.4rem;
+    background-color: rgba(246, 96, 24, 0.15);
+    color: var(--color-primary);
+    border: 1px solid rgba(246, 96, 24, 0.35);
+    padding: 0.5rem 0.85rem;
+    min-height: 42px;
     border-radius: var(--radius-full);
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     font-weight: 700;
     transition: all var(--transition-fast);
   }
 
-  .card-order-btn:hover {
-    background-color: var(--color-whatsapp);
+  .add-to-cart-btn:hover {
+    background-color: var(--color-primary);
     color: #ffffff;
-    border-color: var(--color-whatsapp);
-    transform: scale(1.03);
+    border-color: var(--color-primary);
+    transform: scale(1.02);
+  }
+
+  .qty-stepper {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background-color: var(--color-surface);
+    border: 1px solid rgba(246, 96, 24, 0.4);
+    border-radius: var(--radius-full);
+    padding: 0.2rem 0.35rem;
+    min-height: 42px;
+  }
+
+  .qty-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-full);
+    background-color: rgba(246, 96, 24, 0.2);
+    color: var(--color-primary);
+    font-weight: 800;
+    font-size: 0.95rem;
+    transition: all var(--transition-fast);
+  }
+
+  .qty-btn:hover {
+    background-color: var(--color-primary);
+    color: #ffffff;
+  }
+
+  .qty-btn--minus.is-trash {
+    color: #ef4444;
+    background-color: rgba(239, 68, 68, 0.15);
+  }
+
+  .qty-btn--minus.is-trash:hover {
+    background-color: #ef4444;
+    color: #ffffff;
+  }
+
+  .qty-display {
+    min-width: 22px;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--color-text);
+    font-variant-numeric: tabular-nums;
   }
 
   .soldout-label {

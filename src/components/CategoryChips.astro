@@ -6,10 +6,11 @@ const { categorias } = settings;
 
 <nav class="chips-container no-scrollbar" aria-label="Categorias do cardápio">
   <div class="chips-wrapper">
-    {categorias.map((cat) => (
+    {categorias.map((cat, index) => (
       <a
         href={`#cat-${cat.id}`}
-        class="category-chip"
+        class:list={["category-chip", { active: index === 0 }]}
+        data-cat-id={cat.id}
       >
         <span class="chip-icon">{cat.icone}</span>
         <span class="chip-text">{cat.nome}</span>
@@ -17,6 +18,52 @@ const { categorias } = settings;
     ))}
   </div>
 </nav>
+
+<script>
+  function setupCategoryObserver() {
+    const chips = document.querySelectorAll<HTMLAnchorElement>('.category-chip');
+    if (!chips.length) return;
+
+    const sections = Array.from(chips)
+      .map((chip) => {
+        const id = chip.getAttribute('href')?.replace('#', '');
+        return id ? document.getElementById(id) : null;
+      })
+      .filter((s): s is HTMLElement => s !== null);
+
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            chips.forEach((chip) => {
+              const matches = chip.getAttribute('href') === `#${id}`;
+              chip.classList.toggle('active', matches);
+              if (matches) {
+                chip.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+              }
+            });
+          }
+        });
+      },
+      {
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((sec) => observer.observe(sec));
+  }
+
+  // Inicializa quando o DOM estiver pronto
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupCategoryObserver);
+  } else {
+    setupCategoryObserver();
+  }
+</script>
 
 <style>
   .chips-container {

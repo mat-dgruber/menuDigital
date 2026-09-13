@@ -16,7 +16,14 @@ export interface CheckoutData {
   observacaoGeral?: string;
 }
 
+export interface LastOrder {
+  items: CartItem[];
+  checkout: CheckoutData;
+  savedAt: string;
+}
+
 const STORAGE_KEY = 'menu_digital_cart';
+const LAST_ORDER_STORAGE_KEY = 'menu_digital_last_order';
 let saveTimeout: ReturnType<typeof setTimeout> | null = null;
 
 function isClient(): boolean {
@@ -40,17 +47,23 @@ export function getCart(): CartItem[] {
 /**
  * Salva os itens com debounce de 100ms para evitar batidas excessivas no storage
  */
-function persistCart(items: CartItem[]): void {
+function persistCart(items: CartItem[], immediate = false): void {
   if (!isClient()) return;
   if (saveTimeout) clearTimeout(saveTimeout);
 
-  saveTimeout = setTimeout(() => {
+  const save = () => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
     } catch (err) {
       console.error('Erro ao persistir carrinho:', err);
     }
-  }, 100);
+  };
+
+  if (immediate) {
+    save();
+  } else {
+    saveTimeout = setTimeout(save, 100);
+  }
 
   // Notifica componentes imediatamente via CustomEvent
   window.dispatchEvent(
@@ -145,7 +158,33 @@ export function updateItemObservation(id: string, observacao: string): void {
  * Limpa toda a sacola
  */
 export function clearCart(): void {
-  persistCart([]);
+  persistCart([], true);
+}
+
+export function replaceCart(items: CartItem[]): void {
+  persistCart(items, true);
+}
+
+export function saveLastOrder(checkout: CheckoutData, items: CartItem[] = getCart()): void {
+  if (!isClient()) return;
+  localStorage.setItem(
+    LAST_ORDER_STORAGE_KEY,
+    JSON.stringify({
+      items,
+      checkout,
+      savedAt: new Date().toISOString(),
+    })
+  );
+}
+
+export function getLastOrder(): LastOrder | null {
+  if (!isClient()) return null;
+  try {
+    const raw = localStorage.getItem(LAST_ORDER_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (err) {
+    return null;
+  }
 }
 
 /**
@@ -168,13 +207,13 @@ export function buildWhatsAppUrl(
   const { subtotal } = getCartTotals(items);
 
   const lines: string[] = [];
-  lines.push(`🍽️ *NOVO PEDIDO — ${restaurantName.toUpperCase()}*`);
+  lines.push(`*NOVO PEDIDO — ${restaurantName.toUpperCase()}*`);
   lines.push(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
-  lines.push(`👤 *Cliente:* ${checkout.nomeCliente.trim()}`);
-  lines.push(`📍 *Modalidade:* ${checkout.tipoEntrega === 'delivery' ? '🛵 Entrega (Delivery)' : '🥡 Retirada no Balcão'}`);
+  lines.push(`*Cliente:* ${checkout.nomeCliente.trim()}`);
+  lines.push(`*Modalidade:* ${checkout.tipoEntrega === 'delivery' ? 'Entrega (Delivery)' : 'Retirada no Balcão'}`);
 
   if (checkout.tipoEntrega === 'delivery' && checkout.endereco) {
-    lines.push(`🏠 *Endereço:* ${checkout.endereco.trim()}`);
+    lines.push(`*Endereço:* ${checkout.endereco.trim()}`);
   }
 
   const paymentLabels: Record<CheckoutData['formaPagamento'], string> = {
@@ -184,9 +223,9 @@ export function buildWhatsAppUrl(
     dinheiro: checkout.trocoPara ? `Dinheiro (Troco para ${checkout.trocoPara})` : 'Dinheiro (Sem troco)',
   };
 
-  lines.push(`💳 *Pagamento:* ${paymentLabels[checkout.formaPagamento] || checkout.formaPagamento}`);
+  lines.push(`*Pagamento:* ${paymentLabels[checkout.formaPagamento] || checkout.formaPagamento}`);
   lines.push(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
-  lines.push(`📋 *ITENS DO PEDIDO:*`);
+  lines.push(`*ITENS DO PEDIDO:*`);
 
   items.forEach((it) => {
     const itemTotal = formatCurrency(it.preco * it.quantidade);
@@ -197,10 +236,10 @@ export function buildWhatsAppUrl(
   });
 
   lines.push(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
-  lines.push(`💰 *SUBTOTAL:* ${formatCurrency(subtotal)}`);
+  lines.push(`*SUBTOTAL:* ${formatCurrency(subtotal)}`);
 
   if (checkout.observacaoGeral && checkout.observacaoGeral.trim()) {
-    lines.push(`📝 *Obs Geral:* ${checkout.observacaoGeral.trim()}`);
+    lines.push(`*Obs Geral:* ${checkout.observacaoGeral.trim()}`);
   }
 
   lines.push(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);

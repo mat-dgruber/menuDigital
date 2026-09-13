@@ -4,6 +4,10 @@ import {
   addItem,
   updateQuantity,
   updateItemObservation,
+  replaceCart,
+  saveLastOrder,
+  getLastOrder,
+  clearCart,
   getCartTotals,
   formatCurrency,
   buildWhatsAppUrl,
@@ -19,6 +23,7 @@ function initCartSystem() {
   const drawerRoot = document.getElementById('cart-drawer-root');
   const drawerSheet = drawerRoot?.querySelector('.cart-sheet');
   const emptyState = document.getElementById('cart-empty-state');
+  const btnRestoreLastOrder = document.getElementById('btn-restore-last-order');
   const itemsContainer = document.getElementById('cart-items-container');
   const checkoutForm = document.getElementById('cart-checkout-form') as HTMLFormElement | null;
   const cartFooter = document.getElementById('cart-footer');
@@ -130,6 +135,20 @@ function initCartSystem() {
   // Eventos de Abertura e Fechamento
   btnOpenCart?.addEventListener('click', openCart);
   navCartBtn?.addEventListener('click', openCart);
+
+  btnRestoreLastOrder?.addEventListener('click', () => {
+    const lastOrder = getLastOrder();
+    if (!lastOrder) return;
+
+    replaceCart(lastOrder.items);
+    if (inputNome) inputNome.value = lastOrder.checkout.nomeCliente;
+    if (inputEndereco) inputEndereco.value = lastOrder.checkout.endereco || '';
+    if (inputTroco) inputTroco.value = lastOrder.checkout.trocoPara || '';
+    if (inputObsGeral) inputObsGeral.value = lastOrder.checkout.observacaoGeral || '';
+
+    document.querySelector<HTMLInputElement>(`input[name="tipo_entrega"][value="${lastOrder.checkout.tipoEntrega}"]`)?.click();
+    document.querySelector<HTMLInputElement>(`input[name="forma_pagamento"][value="${lastOrder.checkout.formaPagamento}"]`)?.click();
+  });
 
   document.querySelectorAll('[data-close-cart]').forEach((btn) => {
     btn.addEventListener('click', closeCart);
@@ -262,13 +281,23 @@ function initCartSystem() {
     }
   });
 
+  function escapeHtml(value: string): string {
+    return value.replace(/[&<>"]/g, (char) => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+    })[char] || char);
+  }
+
   // --- Renderização dos Itens no Drawer ---
   function renderDrawerItems() {
     const items = getCart();
     const { count, subtotal } = getCartTotals(items);
 
     if (count === 0) {
-      if (emptyState) emptyState.style.display = 'block';
+      if (emptyState) emptyState.style.display = 'flex';
+      if (btnRestoreLastOrder) btnRestoreLastOrder.style.display = getLastOrder() ? 'inline-flex' : 'none';
       if (itemsContainer) itemsContainer.style.display = 'none';
       if (checkoutForm) checkoutForm.style.display = 'none';
       if (cartFooter) cartFooter.style.display = 'none';
@@ -289,12 +318,14 @@ function initCartSystem() {
         .map((it) => {
           const itemTotal = formatCurrency(it.preco * it.quantidade);
           const isTrash = it.quantidade === 1;
+          const itemName = escapeHtml(it.nome);
+          const itemObservation = escapeHtml(it.observacao || '');
 
           return `
             <div class="cart-item-row" data-drawer-item-id="${it.id}">
               <div class="cart-item-main">
                 <div class="cart-item-info">
-                  <div class="cart-item-name">${it.nome}</div>
+                  <div class="cart-item-name">${itemName}</div>
                   <div class="cart-item-price">${itemTotal} <small style="color: var(--color-text-muted); font-size: 0.72rem;">(${formatCurrency(it.preco)} un)</small></div>
                 </div>
 
@@ -307,14 +338,13 @@ function initCartSystem() {
                 </div>
               </div>
 
-              <input 
-                type="text" 
-                class="cart-item-obs-input" 
-                placeholder="Observação (ex: sem cebola)" 
-                value="${it.observacao || ''}"
-                maxlength="80"
+              <textarea
+                class="cart-item-obs-input"
+                placeholder="Observação (ex: sem cebola, ponto da carne, alergias...)"
+                maxlength="200"
+                rows="2"
                 data-action="obs"
-              />
+              >${itemObservation}</textarea>
             </div>
           `;
         })
@@ -471,6 +501,13 @@ function initCartSystem() {
 
     // Abre o WhatsApp
     window.open(waUrl, '_blank', 'noopener,noreferrer');
+
+    saveLastOrder(checkout, items);
+    clearCart();
+    checkoutForm?.reset();
+    if (inputEndereco) inputEndereco.required = true;
+    if (enderecoWrapper) enderecoWrapper.style.display = 'flex';
+    if (trocoWrapper) trocoWrapper.style.display = 'none';
   });
 
   // Inicialização no carregamento

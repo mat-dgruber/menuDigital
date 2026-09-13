@@ -57,6 +57,9 @@ const { negocio, atendimento } = settings;
         <div class="empty-icon-wrap">🛒</div>
         <h3>Sua sacola está vazia</h3>
         <p>Explore as deliciosas esfihas e adicione itens para montar seu pedido!</p>
+        <button type="button" id="btn-restore-last-order" class="btn-restore-last-order" style="display: none;">
+          Repetir último pedido
+        </button>
         <button type="button" class="btn-explore" data-close-cart>
           Explorar Cardápio
         </button>
@@ -390,8 +393,12 @@ const { negocio, atendimento } = settings;
   /* Estado Vazio */
   .cart-empty {
     margin: auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
     padding: 2.5rem 1rem;
+    gap: 0.75rem;
   }
 
   .empty-icon-wrap {
@@ -411,7 +418,7 @@ const { negocio, atendimento } = settings;
     font-size: 0.85rem;
     color: var(--color-text-muted);
     max-width: 280px;
-    margin: 0 auto 1.5rem auto;
+    margin: 0;
     line-height: 1.45;
   }
 
@@ -424,6 +431,27 @@ const { negocio, atendimento } = settings;
     padding: 0.7rem 1.5rem;
     border-radius: var(--radius-full);
     transition: transform var(--transition-fast);
+  }
+
+  .btn-restore-last-order {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 0.85rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius-full);
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .btn-restore-last-order:hover {
+    background-color: rgba(255, 107, 0, 0.08);
+    transform: scale(1.02);
   }
 
   .btn-explore:hover {
@@ -513,11 +541,14 @@ const { negocio, atendimento } = settings;
 
   :global(.cart-item-obs-input) {
     width: 100%;
+    min-height: 4.5rem;
+    resize: vertical;
     background-color: rgba(0, 0, 0, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: var(--radius-sm);
     color: var(--color-text);
     font-size: 0.75rem;
+    line-height: 1.35;
     padding: 0.35rem 0.6rem;
   }
 

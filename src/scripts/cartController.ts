@@ -163,6 +163,7 @@ function initCartSystem() {
   // --- Gestos de Deslizar para Fechar (Apple Fluid Swipe-to-Dismiss) ---
   const dragArea = document.getElementById('cart-drag-area');
   const cartHeader = drawerRoot?.querySelector('.cart-header');
+  let skipDrawerRender = false;
   let startY = 0;
   let currentDeltaY = 0;
   let isDragging = false;
@@ -376,6 +377,7 @@ function initCartSystem() {
       const row = target.closest<HTMLElement>('.cart-item-row');
       const id = row?.dataset.drawerItemId;
       if (id) {
+        skipDrawerRender = true;
         updateItemObservation(id, target.value);
       }
     }
@@ -436,9 +438,10 @@ function initCartSystem() {
     }
 
     syncMenuCards(cartItems);
-    if (drawerRoot?.classList.contains('is-open')) {
+    if (drawerRoot?.classList.contains('is-open') && !skipDrawerRender) {
       renderDrawerItems();
     }
+    skipDrawerRender = false;
   }
 
   window.addEventListener('cart:updated', ((e: CustomEvent) => {

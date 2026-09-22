@@ -1,36 +1,29 @@
-.PHONY: dev build preview format lint clean setup
+.PHONY: dev build preview lint typecheck test clean
 
-# Desenvolvimento
+## dev – sobe o servidor local (HMR)
 dev:
 	npm run dev
 
+## build – gera o output estático em dist/
 build:
 	npm run build
 
+## preview – pré-visualiza o build local
 preview:
 	npm run preview
 
-# Qualidade
-format:
-	npx prettier --write "src/**/*.{astro,ts,js,css,json}" "public/**/*.{yml,yaml}"
-
+## lint – roda o eslint
 lint:
+	npm run lint
+
+## typecheck – verificação de tipos do astro
+typecheck:
 	npx astro check
 
-# Setup
-setup:
-	npm install
-	cp -n .env.example .env 2>/dev/null || true
+## test – roda os testes com vitest
+test:
+	vitest run
 
+## clean – limpa cache e dist
 clean:
-	rm -rf dist .astro node_modules
-
-# Sandbox
-jail-setup:
-	ai-jail --clean --init
-
-jail-openclaude:
-	ai-jail openclaude
-
-jail-test:
-	ai-jail bash
+	rm -rf .astro dist

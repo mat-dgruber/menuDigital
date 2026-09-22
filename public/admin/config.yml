@@ -16,7 +16,7 @@ collections:
     label_singular: Item do Cardápio
     folder: src/content/menu
     create: true
-    slug: "{{slug}}"
+    slug: "{{name}}"
     extension: md
     format: frontmatter
     fields:
@@ -50,14 +50,14 @@ collections:
   - name: configuracoes
     label: Configurações
     editor:
-      preview: false
+      preview: true
     files:
       - name: settings
         label: Dados do Estabelecimento & Funcionamento
         file: src/data/settings.json
         format: json
         editor:
-          preview: false
+          preview: true
         fields:
           - name: negocio
             label: Dados do Negócio

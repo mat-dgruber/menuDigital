@@ -1,9 +1,9 @@
 ---
 import settings from '../data/settings.json';
-import { getStoreStatus } from '../utils/businessHours';
+import { getStoreStatus, type AtendimentoConfig } from '../utils/businessHours';
 
 const { negocio, atendimento } = settings;
-const initialStatus = getStoreStatus(atendimento as any);
+const initialStatus = getStoreStatus(atendimento as AtendimentoConfig);
 ---
 
 <header class="nav-header">

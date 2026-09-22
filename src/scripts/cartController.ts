@@ -14,10 +14,10 @@ import {
   type CartItem,
   type CheckoutData,
 } from '../utils/cartStore';
-import { getStoreStatus } from '../utils/businessHours';
+import { getStoreStatus, type AtendimentoConfig } from '../utils/businessHours';
 
 function initCartSystem() {
-  const storeStatus = getStoreStatus(settings.atendimento as any);
+  const storeStatus = getStoreStatus(settings.atendimento as AtendimentoConfig);
 
   // --- Elementos de UI ---
   const drawerRoot = document.getElementById('cart-drawer-root');
@@ -283,11 +283,12 @@ function initCartSystem() {
   });
 
   function escapeHtml(value: string): string {
-    return value.replace(/[&<>"]/g, (char) => ({
+    return value.replace(/[&<>"']/g, (char) => ({
       '&': '&amp;',
       '<': '&lt;',
       '>': '&gt;',
       '"': '&quot;',
+      "'": '&#39;',
     })[char] || char);
   }
 
